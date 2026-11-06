@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NASA - Cổng Không Gian & Trò Chơi Trắc Nghiệm Toàn Diện</title>
+    <title>NASA - Cổng Thông Tin & Khám Phá Từng Hành Tinh</title>
     <style>
         :root {
             --bg-color: #050714;
@@ -227,7 +227,7 @@
             display: none;
         }
 
-        /* PHẦN KHÁM PHÁ HÀNH TINH ĐƠN LẬP */
+        /* PHẦN KHÁM PHÁ HÀNH TINH CHI TIẾT */
         .explore-section {
             display: none;
         }
@@ -251,10 +251,10 @@
             background: var(--bg-color);
             border: 1px solid var(--card-border);
             color: var(--text-color);
-            padding: 8px 16px;
+            padding: 8px 14px;
             border-radius: 20px;
             cursor: pointer;
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             font-weight: 600;
             display: flex;
             align-items: center;
@@ -368,7 +368,7 @@
     </header>
 
     <div class="main-container">
-        <!-- Nút chuyển đổi hai chế độ chính -->
+        <!-- Nút chọn chế độ lớn -->
         <div class="mode-selector">
             <button class="mode-btn active" id="btnGameMode" onclick="switchMainMode('game')">🎮 Trò Chơi Trắc Nghiệm (20 Câu)</button>
             <button class="mode-btn" id="btnExploreMode" onclick="switchMainMode('explore')">🪐 Khám Phá Từng Hành Tinh</button>
@@ -397,7 +397,7 @@
             </div>
         </div>
 
-        <!-- 2. PHẦN KHÁM PHÁ HÀNH TINH ĐƠN LẬP (CÓ LIKE/DISLIKE) -->
+        <!-- 2. PHẦN KHÁM PHÁ HÀNH TINH CHI TIẾT TỪNG TRANG -->
         <div class="explore-section" id="exploreSection">
             <div class="planet-nav" id="planetNav"></div>
             <div id="pagesContainer"></div>
@@ -405,38 +405,31 @@
     </div>
 
     <script>
+        // Dữ liệu chi tiết từng hành tinh/thiên thể được ghi rõ ràng rành mạch
         const celestialData = [
             {
                 id: "sun",
                 name: "Mặt Trời",
-                icon: "🌟",
+                icon: "☀️",
                 status: "status-none",
                 statusText: "🔴 Chưa từng có con người đặt chân (Chỉ có tàu không người lái bay xuyên vành nhật hoa)",
-                desc: "Thách thức cốt lõi: Chịu đựng bức xạ cực đoan và nhiệt độ hàng triệu độ C. Tàu Parker Solar Probe phải tiếp cận vùng vành nhật hoa để giải mã nguồn gốc bão từ."
-            },
-            {
-                id: "moon",
-                name: "Mặt Trăng",
-                icon: "🌙",
-                status: "status-human",
-                statusText: "🟢 Đã có con người đặt chân (Chương trình Apollo lịch sử & Artemis)",
-                desc: "Thách thức cốt lõi: Xây dựng trạm trú ẩn dài hạn, xử lý lớp bụi Regolith sắc nhọn bám dính thiết bị, và khai thác nguồn nước đá vùng cực."
+                desc: "Mặt Trời là ngôi sao trung tâm của Hệ Mặt Trời, chứa 99.8% khối lượng toàn hệ thống. Thách thức cốt lõi: Chịu đựng bức xạ cực đoan và nhiệt độ bề mặt hàng triệu độ C. Tàu Parker Solar Probe của NASA phải tiếp cận trực tiếp vùng vành nhật hoa để giải mã nguồn gốc gió mặt trời."
             },
             {
                 id: "mercury",
                 name: "Sao Thủy",
-                icon: "☄️",
+                icon: "☿️",
                 status: "status-robot",
                 statusText: "🟡 Robot/Tàu tự hành khảo sát (Chưa có con người đặt chân)",
-                desc: "Thách thức cốt lõi: Biên độ nhiệt khủng khiếp chênh lệch từ -180°C lên tới 430°C giữa ngày và đêm do thiếu lớp khí quyển giữ nhiệt."
+                desc: "Sao Thủy là hành tinh nhỏ nhất và nằm gần Mặt Trời nhất. Thách thức cốt lõi: Biên độ nhiệt khủng khiếp chênh lệch từ -180°C lên tới 430°C giữa ngày và đêm do hành tinh này hoàn toàn thiếu lớp khí quyển dày để giữ nhiệt và phân phối nhiệt lượng."
             },
             {
                 id: "venus",
                 name: "Sao Kim",
-                icon: "✨",
+                icon: "♀️",
                 status: "status-none",
-                statusText: "🔴 Chưa từng có con người đặt chân (Áp suất & axit hủy diệt robot)",
-                desc: "Thách thức cốt lõi: Áp suất khí quyển gấp 92 lần Trái Đất cùng nhiệt độ 465°C làm tan chảy chì trong vài phút. Cần vi mạch Silicon-carbide."
+                statusText: "🔴 Chưa từng có con người đặt chân (Áp suất khổng lồ & mưa axit hủy diệt)",
+                desc: "Sao Kim có kích thước tương đồng Trái Đất nhưng sở hữu môi trường địa ngục. Thách thức cốt lõi: Áp suất khí quyển gấp 92 lần Trái Đất cùng nhiệt độ bề mặt lên tới 465°C làm tan chảy cả chì, đi kèm những đám mây chứa axit sulfuric đặc quánh."
             },
             {
                 id: "earth",
@@ -444,62 +437,71 @@
                 icon: "🌍",
                 status: "status-human",
                 statusText: "🟢 Nơi con người sinh sống và làm chủ hoàn toàn",
-                desc: "Thách thức cốt lõi: Quản lý rác thải quỹ đạo chuyển động 28.000 km/h, duy trì hệ thống hỗ trợ sự sống khép kín 98%, và phòng thủ tiểu hành tinh."
+                desc: "Trái Đất là ngôi nhà chung duy nhất được biết đến có sự sống trong vũ trụ. Thách thức cốt lõi hiện nay: Quản lý rác thải quỹ đạo chuyển động tốc độ 28.000 km/h, duy trì hệ thống hỗ trợ sự sống khép kín, và phòng thủ hành tinh trước các tiểu hành tinh cận kề."
+            },
+            {
+                id: "moon",
+                name: "Mặt Trăng",
+                icon: "🌕",
+                status: "status-human",
+                statusText: "🟢 Đã có con người đặt chân (Chương trình Apollo lịch sử & Artemis)",
+                desc: "Mặt Trăng là vệ tinh tự nhiên duy nhất của Trái Đất. Thách thức cốt lõi: Xây dựng trạm trú ẩn dài hạn cho phi hành gia, xử lý lớp bụi Regolith sắc nhọn như mảnh thủy tinh bám dính thiết bị, và khai thác nguồn nước đá dưới các hố sâu vùng cực."
             },
             {
                 id: "mars",
                 name: "Sao Hỏa",
-                icon: "🪐",
+                icon: "🔴",
                 status: "status-robot",
-                statusText: "🟡 Robot tự hành hoạt động (Chưa có con người đặt chân)",
-                desc: "Thách thức cốt lõi: Chống chọi bức xạ vũ trụ, bão bụi toàn cầu, và ứng dụng công nghệ ISRU tự động tạo nước và nhiên liệu tên lửa."
+                statusText: "🟡 Robot tự hành hoạt động liên tục (Chưa có con người đặt chân)",
+                desc: "Sao Hỏa (Hành tinh Đỏ) là mục tiêu hàng đầu cho sứ mệnh có người lái của NASA. Thách thức cốt lõi: Chống chọi bức xạ vũ trụ mạnh mẽ, bão bụi toàn cầu bao phủ, và ứng dụng công nghệ ISRU tự động chuyển hóa băng ngầm thành nước sạch và nhiên liệu tên lửa."
             },
             {
                 id: "jupiter",
                 name: "Sao Mộc",
-                icon: "💫",
+                icon: "🟠",
                 status: "status-none",
-                statusText: "🔴 Chưa từng có con người đặt chân (Bức xạ và từ trường khổng lồ)",
-                desc: "Thách thức cốt lõi: Vượt qua lớp từ trường khổng lồ tạo ra các vành đai bức xạ năng lượng cao phá hủy nhanh chóng linh kiện điện tử."
+                statusText: "🔴 Chưa từng có con người đặt chân (Bức xạ và từ trường cực mạnh)",
+                desc: "Sao Mộc là hành tinh khổng lồ khí lớn nhất trong Hệ Mặt Trời. Thách thức cốt lõi: Vượt qua lớp từ trường siêu khổng lồ tạo ra các vành đai bức xạ năng lượng cao có khả năng phá hủy vi mạch điện tử siêu nhanh của bất kỳ tàu thám hiểm nào tiến gần."
             },
             {
                 id: "saturn",
                 name: "Sao Thổ",
-                icon: "🌌",
+                icon: "🪐",
                 status: "status-none",
                 statusText: "🔴 Chưa từng có con người đặt chân (Hệ thống vành đai băng phức tạp)",
-                desc: "Thách thức cốt lõi: Điều hướng quỹ đạo an toàn qua hàng tỷ hạt băng chuyển động tốc độ siêu nhanh bao quanh các vành đai."
+                desc: "Sao Thổ nổi tiếng với hệ thống vành đai rực rỡ cấu tạo từ các hạt băng và đá. Thách thức cốt lõi: Điều hướng quỹ đạo cực kỳ an toàn qua hàng tỷ hạt băng chuyển động với vận tốc siêu nhanh bao quanh các khe hở vành đai phức tạp."
             },
             {
                 id: "uranus",
                 name: "Sao Thiên Vương",
-                icon: "🧊",
+                icon: "🔵",
                 status: "status-none",
-                statusText: "🔴 Chưa từng có con người đặt chân (Hành tinh băng giá xa xôi)",
-                desc: "Thách thức cốt lõi: Khoảng cách quá xa khiến năng lượng mặt trời suy giảm nặng, bắt buộc dùng máy phát hạt nhân RTG độc lập."
+                statusText: "🔴 Chưa từng có con người đặt chân (Hành tinh băng giá quay nghiêng)",
+                desc: "Sao Thiên Vương là một 'gã khổng lồ băng' độc đáo với trục tự quay nằm ngang góc 98 độ. Thách thức cốt lõi: Khoảng cách quá xa khiến năng lượng mặt trời suy giảm nặng nề, buộc các tàu thăm dò phải sử dụng máy phát nhiệt điện đồng vị phóng xạ (RTG) độc lập."
             },
             {
                 id: "neptune",
                 name: "Sao Hải Vương",
-                icon: "🌀",
+                icon: "🌊",
                 status: "status-none",
                 statusText: "🔴 Chưa từng có con người đặt chân (Biên giới tối tăm xa nhất)",
-                desc: "Thách thức cốt lõi: Độ trễ tín hiệu liên lạc mất hàng giờ đồng hồ và cường độ tín hiệu cực kỳ yếu ở vùng biên giới ngoài cùng."
+                desc: "Sao Hải Vương là hành tinh lớn vòng ngoài cùng với những cơn gió siêu thanh mạnh nhất hệ mặt trời. Thách thức cốt lõi: Độ trễ tín hiệu liên lạc mất hàng giờ đồng hồ chiều đi và cường độ tín hiệu cực kỳ yếu ở vùng biên giới xa xôi."
             }
         ];
 
+        // 20 câu hỏi trắc nghiệm chuyên sâu
         const quizData = [
             {
                 question: "1. Tính đến nay, thiên thể ngoài Trái Đất nào là nơi duy nhất con người từng trực tiếp đặt chân tới?",
-                options: ["A. Mặt Trăng 🌙", "B. Sao Hỏa 🪐", "C. Sao Kim ✨", "D. Trái Đất 🌍"],
+                options: ["A. Mặt Trăng 🌕", "B. Sao Hỏa 🔴", "C. Sao Kim ♀️", "D. Trái Đất 🌍"],
                 correct: 0,
-                explanation: "Mặt Trăng 🌙 là thiên thể duy nhất ngoài Trái Đất mà con người từng đặt chân tới trong chương trình Apollo."
+                explanation: "Mặt Trăng 🌕 là thiên thể duy nhất ngoài Trái Đất mà con người từng đặt chân tới trong chương trình Apollo."
             },
             {
                 question: "2. Hành tinh nào trong hệ mặt trời có áp suất khí quyển nghiền nát kim loại và nhiệt độ bề mặt nóng chảy chì (465°C)?",
-                options: ["A. Sao Thủy ☄️", "B. Sao Kim ✨", "C. Sao Mộc 💫", "D. Sao Hỏa 🪐"],
+                options: ["A. Sao Thủy ☿️", "B. Sao Kim ♀️", "C. Sao Mộc 🟠", "D. Sao Hỏa 🔴"],
                 correct: 1,
-                explanation: "Sao Kim ✨ có nhiệt độ khắc nghiệt và áp suất khí quyển cực lớn, con người chưa từng đặt chân tới."
+                explanation: "Sao Kim ♀️ có nhiệt độ khắc nghiệt và áp suất khí quyển cực lớn, con người chưa từng đặt chân tới."
             },
             {
                 question: "3. Thách thức lớn nhất đối với phi hành gia khi sống dài ngày trong môi trường không trọng lực là gì?",
@@ -509,24 +511,24 @@
             },
             {
                 question: "4. Hành tinh nào sở hữu lớp từ trường và vành đai bức xạ mạnh nhất, đe dọa các linh kiện điện tử của tàu thám hiểm?",
-                options: ["A. Sao Mộc 💫", "B. Sao Thủy ☄️", "C. Sao Hải Vương 🌀", "D. Sao Thiên Vương 🧊"],
+                options: ["A. Sao Mộc 🟠", "B. Sao Thủy ☿️", "C. Sao Hải Vương 🌊", "D. Sao Thiên Vương 🔵"],
                 correct: 0,
-                explanation: "Sao Mộc 💫 có từ trường khổng lồ tạo ra các vành đai bức xạ nguy hiểm bậc nhất hệ mặt trời."
+                explanation: "Sao Mộc 🟠 có từ trường khổng lồ tạo ra các vành đai bức xạ nguy hiểm bậc nhất hệ mặt trời."
             },
             {
                 question: "5. Công nghệ ISRU (Khai thác tài nguyên tại chỗ) chủ yếu được nghiên cứu để ứng dụng trên hành tinh nào?",
-                options: ["A. Sao Kim ✨", "B. Sao Hỏa 🪐", "C. Sao Thổ 🌌", "D. Mặt Trăng 🌙"],
+                options: ["A. Sao Kim ♀️", "B. Sao Hỏa 🔴", "C. Sao Thổ 🪐", "D. Mặt Trăng 🌕"],
                 correct: 1,
-                explanation: "ISRU trên Sao Hỏa 🪐 giúp biến băng ngầm thành nước sạch và nhiên liệu tên lửa phục vụ chiều về."
+                explanation: "ISRU trên Sao Hỏa 🔴 giúp biến băng ngầm thành nước sạch và nhiên liệu tên lửa phục vụ chiều về."
             },
             {
-                question: "6. Tàu không gian nào của NASA đã dũng cảm bay sát vùng vành nhật hoa để nghiên cứu Mặt Trời 🌟?",
+                question: "6. Tàu không gian nào của NASA đã dũng cảm bay sát vùng vành nhật hoa để nghiên cứu Mặt Trời ☀️?",
                 options: ["A. Voyager 2", "B. Parker Solar Probe", "C. Cassini", "D. Juno"],
                 correct: 1,
-                explanation: "Tàu Parker Solar Probe chịu nhiệt độ cực đoan để nghiên cứu trực tiếp khí quyển Mặt Trời 🌟."
+                explanation: "Tàu Parker Solar Probe chịu nhiệt độ cực đoan để nghiên cứu trực tiếp khí quyển Mặt Trời ☀️."
             },
             {
-                question: "7. Tại sao các tàu thám hiểm đến Sao Thiên Vương 🧊 và Sao Hải Vương 🌀 không thể dùng tấm pin mặt trời thông thường?",
+                question: "7. Tại sao các tàu thám hiểm đến Sao Thiên Vương 🔵 và Sao Hải Vương 🌊 không thể dùng tấm pin mặt trời thông thường?",
                 options: ["A. Vì ở đó quá gần Mặt Trời làm cháy pin", "B. Vì ở đó quá xa, ánh sáng quá yếu", "C. Vì bị gió bụi thổi bay hoàn toàn", "D. Vì pin bị đóng băng không dẫn điện"],
                 correct: 1,
                 explanation: "Khoảng cách quá xa khiến năng lượng mặt trời suy giảm nặng, đòi hỏi nguồn điện hạt nhân RTG."
@@ -539,33 +541,33 @@
             },
             {
                 question: "9. Chương trình Artemis của NASA hiện đang tập trung chinh phục và xây dựng căn cứ dài hạn tại đâu?",
-                options: ["A. Mặt Trăng 🌙", "B. Sao Kim ✨", "C. Sao Mộc 💫", "D. Sao Thổ 🌌"],
+                options: ["A. Mặt Trăng 🌕", "B. Sao Kim ♀️", "C. Sao Mộc 🟠", "D. Sao Thổ 🪐"],
                 correct: 0,
-                explanation: "Chương trình Artemis đặt mục tiêu đưa con người quay trở lại Mặt Trăng 🌙 và xây dựng trạm trú ẩn."
+                explanation: "Chương trình Artemis đặt mục tiêu đưa con người quay trở lại Mặt Trăng 🌕 và xây dựng trạm trú ẩn."
             },
             {
-                question: "10. Bụi Regolith bám dính trên các thiên thể không có khí quyển như Mặt Trăng 🌙 có đặc điểm nguy hiểm gì?",
+                question: "10. Bụi Regolith bám dính trên các thiên thể không có khí quyển như Mặt Trăng 🌕 có đặc điểm nguy hiểm gì?",
                 options: ["A. Mịn và mềm như nhung", "B. Sắc nhọn như mảnh thủy tinh nhỏ", "C. Chứa chất độc thần kinh dạng khí", "D. Tự phát nổ khi gặp ánh sáng"],
                 correct: 1,
-                explanation: "Bụi Regolith trên Mặt Trăng 🌙 rất sắc nhọn do không bị bào mòn bởi gió, gây mài mòn thiết bị nghiêm trọng."
+                explanation: "Bụi Regolith trên Mặt Trăng 🌕 rất sắc nhọn do không bị bào mòn bởi gió, gây mài mòn thiết bị nghiêm trọng."
             },
             {
-                question: "11. Tàu vũ trụ duy nhất trong lịch sử từng bay lướt qua Sao Thiên Vương 🧊 và Sao Hải Vương 🌀 là gì?",
+                question: "11. Tàu vũ trụ duy nhất trong lịch sử từng bay lướt qua Sao Thiên Vương 🔵 và Sao Hải Vương 🌊 là gì?",
                 options: ["A. Voyager 2", "B. Pioneer 10", "C. Curiosity", "D. Opportunity"],
                 correct: 0,
                 explanation: "Voyager 2 là tàu thám hiểm duy nhất bay lướt qua hai hành tinh băng giá vòng ngoài này vào thập niên 80."
             },
             {
-                question: "12. Yếu tố nào sau đây gây cản trở lớn nhất cho việc truyền thông tin liên hành tinh từ Sao Hải Vương 🌀 về Trái Đất 🌍?",
+                question: "12. Yếu tố nào sau đây gây cản trở lớn nhất cho việc truyền thông tin liên hành tinh từ Sao Hải Vương 🌊 về Trái Đất 🌍?",
                 options: ["A. Sóng phát ra bị đóng băng", "B. Độ trễ tín hiệu lên tới hàng giờ và tín hiệu cực kỳ yếu", "C. Bị hành tinh khác nuốt trọn sóng", "D. Tốc độ ánh sáng bị chậm lại"],
                 correct: 1,
                 explanation: "Do khoảng cách quá xa, độ trễ tín hiệu mất nhiều giờ và cường độ tín hiệu suy giảm nghiêm trọng."
             },
             {
-                question: "13. Tên loại vi mạch siêu bền được nghiên cứu để giúp thiết bị điện tử sống sót trong môi trường nhiệt độ cực cao của Sao Kim ✨ là gì?",
+                question: "13. Tên loại vi mạch siêu bền được nghiên cứu để giúp thiết bị điện tử sống sót trong môi trường nhiệt độ cực cao của Sao Kim ♀️ là gì?",
                 options: ["A. Silicon-Carbide", "B. Đồng nguyên chất", "C. Nhôm dẻo chịu nhiệt", "D. Thạch anh lỏng"],
                 correct: 0,
-                explanation: "Vi mạch làm từ Silicon-carbide giúp thiết bị không bị phá hủy dưới nhiệt độ 465°C của Sao Kim ✨."
+                explanation: "Vi mạch làm từ Silicon-carbide giúp thiết bị không bị phá hủy dưới nhiệt độ 465°C của Sao Kim ♀️."
             },
             {
                 question: "14. Vấn đề 'Rác thải quỹ đạo' xung quanh Trái Đất 🌍 nguy hiểm như thế nào đối với các vệ tinh?",
@@ -574,7 +576,7 @@
                 explanation: "Rác thải quỹ đạo bay với vận tốc ~28.000 km/h, có sức công phá cực lớn khi va chạm."
             },
             {
-                question: "15. Công nghệ In 3D ngoài hành tinh dự kiến sử dụng nguyên liệu chính nào có sẵn trên bề mặt Sao Hỏa 🪐?",
+                question: "15. Công nghệ In 3D ngoài hành tinh dự kiến sử dụng nguyên liệu chính nào có sẵn trên bề mặt Sao Hỏa 🔴?",
                 options: ["A. Nhựa tổng hợp", "B. Đất đá bụi Regolith địa phương", "C. Cát thạch anh mịn", "D. Gỗ hóa thạch"],
                 correct: 1,
                 explanation: "Robot sẽ tận dụng bụi đất đá Regolith ngay tại chỗ để in ra các cấu trúc vòm nhà trú ẩn."
@@ -586,7 +588,7 @@
                 explanation: "Quy chuẩn kiểm định sinh học nghiêm ngặt để tránh mang mầm bệnh chéo giữa các thiên thể."
             },
             {
-                question: "17. Tại sao bề mặt Sao Thủy ☄️ lại có biên độ nhiệt thay đổi cực kỳ khủng khiếp giữa ngày và đêm?",
+                question: "17. Tại sao bề mặt Sao Thủy ☿️ lại có biên độ nhiệt thay đổi cực kỳ khủng khiếp giữa ngày và đêm?",
                 options: ["A. Do nó quay quá nhanh xung quanh tâm", "B. Do không có lớp khí quyển dày để giữ nhiệt", "C. Do bề mặt cấu tạo toàn bằng than chì", "D. Do nằm quá gần các tiểu hành tinh"],
                 correct: 1,
                 explanation: "Vì không có tầng khí quyển giữ nhiệt, mặt ban ngày của Sao Thủy rất nóng còn ban đêm đóng băng sâu."
@@ -598,10 +600,10 @@
                 explanation: "Động cơ hạt nhân cung cấp năng lượng cực lớn giúp tăng tốc độ di chuyển vượt trội trong không gian sâu."
             },
             {
-                question: "19. Tàu thám hiểm nào nổi tiếng với sứ mệnh bay lượn qua các khe hở vành đai băng giá của Sao Thổ 🌌?",
+                question: "19. Tàu thám hiểm nào nổi tiếng với sứ mệnh bay lượn qua các khe hở vành đai băng giá của Sao Thổ 🪐?",
                 options: ["A. Cassini", "B. Sputnik", "C. Hubble", "D. James Webb"],
                 correct: 0,
-                explanation: "Tàu Cassini đã hoàn thành xuất sắc các quỹ đạo hiểm hóc quanh hệ thống vành đai Sao Thổ 🌌."
+                explanation: "Tàu Cassini đã hoàn thành xuất sắc các quỹ đạo hiểm hóc quanh hệ thống vành đai Sao Thổ 🪐."
             },
             {
                 question: "20. Mục đích chính của việc phóng các sứ mệnh nghiên cứu Tiểu hành tinh cận Trái Đất (NEO) là gì?",
@@ -724,7 +726,7 @@
                             <button class="feedback-btn" onclick="handleFeedback('${item.id}', 'like')">👍 Thích (<span id="like-count-${item.id}">15</span>)</button>
                             <button class="feedback-btn" onclick="handleFeedback('${item.id}', 'dislike')">👎 Không thích (<span id="dislike-count-${item.id}">0</span>)</button>
                         </div>
-                        <div class="feedback-msg" id="msg-${item.id}">Cảm ơn bạn đã đánh giá về ${item.name}!</div>
+                        <div class="feedback-msg" id="msg-${item.id}">Cảm ơn bạn đã đánh giá về trang ${item.name}!</div>
                     </div>
                 `;
                 pagesContainer.appendChild(page);
