@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NASA - Trò Chơi Trắc Nghiệm 20 Câu & Cổng Dữ Liệu Không Gian</title>
+    <title>NASA - Cổng Không Gian & Trò Chơi Trắc Nghiệm Đầy Đủ</title>
     <style>
         :root {
             --bg-color: #0b0d19;
@@ -93,6 +93,7 @@
             margin: 0 auto;
         }
 
+        /* Nút lựa chọn chế độ lớn (Trò chơi 20 câu / Khám phá hành tinh) */
         .mode-selector {
             display: flex;
             justify-content: center;
@@ -119,7 +120,7 @@
             box-shadow: 0 0 15px var(--nasa-red);
         }
 
-        /* TRÒ CHƠI TRẮC NGHIỆM */
+        /* PHẦN TRÒ CHƠI 20 CÂU */
         .game-section {
             display: block;
         }
@@ -207,127 +208,126 @@
             display: none;
         }
 
-        /* PHẦN TRA CỨU THÔNG TIN */
+        /* PHẦN KHÁM PHÁ HÀNH TINH ĐƠN LẬP */
         .explore-section {
             display: none;
         }
 
-        .solar-system {
+        .planet-nav {
+            max-width: 1100px;
+            margin: 0 auto 30px auto;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
             background: var(--card-bg);
-            padding: 20px;
-            border-radius: 12px;
+            padding: 15px;
+            border-radius: 14px;
             border: 1px solid var(--card-border);
-            text-align: center;
-            margin-bottom: 30px;
             backdrop-filter: blur(10px);
         }
 
-        .solar-system h3 {
-            margin-bottom: 12px;
-            color: var(--nasa-red);
-        }
-
-        .planet-container {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .planet-btn {
+        .nav-tab {
             background: var(--bg-color);
             border: 1px solid var(--nasa-blue);
             color: var(--text-color);
             padding: 8px 14px;
             border-radius: 20px;
             cursor: pointer;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             font-weight: 600;
         }
 
-        .planet-btn:hover, .planet-btn.active {
+        .nav-tab:hover, .nav-tab.active {
             background: var(--nasa-red);
             border-color: var(--nasa-red);
             color: white;
+            box-shadow: 0 0 12px var(--nasa-red);
         }
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 20px;
+        .planet-page {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: none;
         }
 
-        .card {
+        .planet-page.active {
+            display: block;
+        }
+
+        .planet-header-card {
             background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 12px;
-            padding: 20px;
-            cursor: pointer;
-            position: relative;
-            backdrop-filter: blur(8px);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            border: 2px solid var(--nasa-blue);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 25px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 25px var(--accent-glow);
         }
 
-        .card:hover {
-            border-color: var(--nasa-red);
-            transform: translateY(-5px);
+        .planet-header-card h2 {
+            font-size: 2.2rem;
+            color: var(--nasa-red);
+            margin-bottom: 10px;
         }
-
-        .card-header-info {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.75rem;
-            font-weight: bold;
-            margin-bottom: 8px;
-        }
-
-        .card-number { color: var(--nasa-red); text-transform: uppercase; }
-        .planet-tag { background: var(--nasa-blue); color: white; padding: 2px 8px; border-radius: 4px; }
 
         .status-badge {
-            font-size: 0.75rem;
-            padding: 4px 8px;
-            border-radius: 6px;
-            margin-bottom: 10px;
-            font-weight: bold;
             display: inline-block;
+            font-size: 0.85rem;
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-weight: bold;
+            margin-bottom: 15px;
         }
-
         .status-human { background: rgba(0, 180, 216, 0.2); color: #00b4d8; border: 1px solid #00b4d8; }
         .status-robot { background: rgba(255, 183, 3, 0.2); color: #ffb703; border: 1px solid #ffb703; }
         .status-none { background: rgba(239, 35, 60, 0.2); color: #ef233c; border: 1px solid #ef233c; }
 
-        .card h3 { font-size: 1.05rem; margin-bottom: 8px; }
-        .card p { font-size: 0.85rem; opacity: 0.85; line-height: 1.4; }
+        .planet-desc {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto 20px auto;
+        }
 
-        /* Modal Chi Tiết */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8);
+        /* Nút Like / Dislike */
+        .feedback-container {
+            display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 1000;
-            padding: 20px;
+            gap: 15px;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid var(--card-border);
         }
 
-        .modal-content {
+        .feedback-btn {
             background: var(--bg-color);
-            border: 2px solid var(--nasa-blue);
-            padding: 30px;
-            border-radius: 14px;
-            max-width: 550px;
-            width: 100%;
-            box-shadow: 0 0 25px var(--nasa-blue);
+            border: 1px solid var(--nasa-blue);
+            color: var(--text-color);
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
-        .modal-content h3 { color: var(--nasa-red); margin-bottom: 12px; }
-        .modal-meta { background: var(--card-bg); padding: 10px; border-radius: 6px; font-size: 0.85rem; margin-bottom: 15px; border-left: 3px solid var(--nasa-red); }
-        .close-btn { background: var(--nasa-blue); color: white; border: none; padding: 10px; border-radius: 6px; cursor: pointer; width: 100%; font-weight: bold; }
-        .close-btn:hover { background: var(--nasa-red); }
+        .feedback-btn:hover {
+            border-color: var(--nasa-red);
+            background: rgba(252, 61, 33, 0.1);
+        }
+
+        .feedback-msg {
+            font-size: 0.85rem;
+            color: #28a745;
+            font-weight: bold;
+            display: none;
+            margin-top: 8px;
+        }
     </style>
 </head>
 <body data-theme="dark">
@@ -335,7 +335,7 @@
     <header>
         <div class="logo-area">
             <div class="nasa-badge">NASA</div>
-            <h1>Trò Chơi Trắc Nghiệm 20 Câu & Dữ Liệu Không Gian</h1>
+            <h1>Cổng Không Gian Đầy Đủ & Trò Chơi Trắc Nghiệm</h1>
         </div>
         <div>
             <button class="btn" onclick="toggleTheme()">☀️ / 🌙 Giao Diện</button>
@@ -343,13 +343,13 @@
     </header>
 
     <div class="main-container">
-        <!-- Chuyển đổi chế độ -->
+        <!-- Chuyển đổi giữa chế độ Chơi Trắc Nghiệm 20 Câu và Khám Phá Từng Hành Tinh -->
         <div class="mode-selector">
-            <button class="mode-btn active" id="btnGameMode" onclick="switchMode('game')">🎮 Trò Chơi Trắc Nghiệm (20 Câu)</button>
-            <button class="mode-btn" id="btnExploreMode" onclick="switchMode('explore')">📚 Tra Cứu Thách Thức NASA</button>
+            <button class="mode-btn active" id="btnGameMode" onclick="switchMainMode('game')">🎮 Trò Chơi Trắc Nghiệm (20 Câu)</button>
+            <button class="mode-btn" id="btnExploreMode" onclick="switchMainMode('explore')">🪐 Khám Phá Từng Hành Tinh</button>
         </div>
 
-        <!-- 1. TRÒ CHƠI 20 CÂU -->
+        <!-- 1. PHẦN TRÒ CHƠI 20 CÂU -->
         <div class="game-section" id="gameSection">
             <div class="game-container">
                 <div id="quizScreen">
@@ -372,54 +372,89 @@
             </div>
         </div>
 
-        <!-- 2. TRA CỨU THÔNG TIN -->
+        <!-- 2. PHẦN KHÁM PHÁ HÀNH TINH ĐƠN LẬP (CÓ LIKE/DISLIKE) -->
         <div class="explore-section" id="exploreSection">
-            <div class="solar-system">
-                <h3>Hệ Thống Lọc Thiên Thể Không Gian</h3>
-                <div class="planet-container">
-                    <button class="planet-btn" onclick="filterPlanet('Mặt Trời')">☀️ Mặt Trời</button>
-                    <button class="planet-btn" onclick="filterPlanet('Mặt Trăng')">🌕 Mặt Trăng</button>
-                    <button class="planet-btn" onclick="filterPlanet('Sao Thủy')">☿️ Sao Thủy</button>
-                    <button class="planet-btn" onclick="filterPlanet('Sao Kim')">♀️ Sao Kim</button>
-                    <button class="planet-btn" onclick="filterPlanet('Trái Đất')">🌍 Trái Đất</button>
-                    <button class="planet-btn" onclick="filterPlanet('Sao Hỏa')">🔴 Sao Hỏa</button>
-                    <button class="planet-btn" onclick="filterPlanet('Sao Mộc')">🟠 Sao Mộc</button>
-                    <button class="planet-btn" onclick="filterPlanet('Sao Thổ')">🪐 Sao Thổ</button>
-                    <button class="planet-btn" onclick="filterPlanet('Sao Thiên Vương')">🔵 Sao Thiên Vương</button>
-                    <button class="planet-btn" onclick="filterPlanet('Sao Hải Vương')">🌊 Sao Hải Vương</button>
-                    <button class="btn" style="padding: 4px 10px; font-size: 0.8rem;" onclick="filterAll()">Tất Cả</button>
-                </div>
-            </div>
-
-            <div class="grid" id="issuesGrid"></div>
-        </div>
-    </div>
-
-    <!-- Modal Chi Tiết -->
-    <div class="modal" id="infoModal">
-        <div class="modal-content">
-            <h3 id="modalTitle">Tiêu đề</h3>
-            <div class="modal-meta" id="modalMeta">Trạng thái...</div>
-            <p id="modalDesc" style="font-size: 0.92rem; line-height: 1.5; margin-bottom: 20px;"></p>
-            <button class="close-btn" onclick="closeModal()">Đóng Cửa Sổ</button>
+            <div class="planet-nav" id="planetNav"></div>
+            <div id="pagesContainer"></div>
         </div>
     </div>
 
     <script>
-        const issues = [
-            { id: 1, title: "Khảo sát khí quyển và chịu nhiệt vành nhật hoa", desc: "Tàu Parker Solar Probe đối mặt với bức xạ nhiệt hàng triệu độ C để thu thập dữ liệu nguồn gốc bão từ.", planet: "Mặt Trời", emoji: "☀️", status: "status-none", exploration: "Chưa từng có con người đặt chân (Chỉ có tàu không người lái bay xuyên qua)" },
-            { id: 2, title: "Xây dựng trạm trú ẩn và khai thác băng cực Mặt Trăng (Artemis)", desc: "Khắc phục bụi regolith sắc nhọn bám dính thiết bị và khai thác nước đá phục vụ căn cứ dài hạn.", planet: "Mặt Trăng", emoji: "🌕", status: "status-human", exploration: "Đã có con người đặt chân (Chương trình Apollo lịch sử và sắp quay lại)" },
-            { id: 3, title: "Bảo vệ vật liệu trước biên độ nhiệt Sao Thủy", desc: "Chênh lệch nhiệt độ bề mặt từ -180°C lên tới 430°C đòi hỏi lớp phủ gốm chịu nhiệt đặc biệt.", planet: "Sao Thủy", emoji: "☿️", status: "status-robot", exploration: "Chưa từng có con người đặt chân (Đã có tàu Messenger và BepiColombo bay quỹ đạo)" },
-            { id: 4, title: "Chế tạo thiết bị cơ điện tử sống sót trên Sao Kim", desc: "Áp suất gấp 92 lần Trái Đất và nhiệt độ 465°C làm tan chảy chì trong vài phút. Cần vi mạch silicon-carbide.", planet: "Sao Kim", emoji: "♀️", status: "status-none", exploration: "Chưa từng có con người đặt chân (Tàu Venera từng chụp ảnh vài phút trước khi hỏng)" },
-            { id: 5, title: "Quản lý rác thải quỹ đạo và phòng thủ Trái Đất", desc: "Theo dõi hàng triệu mảnh vỡ trôi nổi với vận tốc lớn và tính toán quỹ đạo tiểu hành tinh va chạm.", planet: "Trái Đất", emoji: "🌍", status: "status-human", exploration: "Nơi duy nhất con người đang sinh sống và làm chủ hoàn toàn" },
-            { id: 6, title: "Sinh tồn và khai thác tài nguyên tại chỗ (ISRU) trên Sao Hỏa", desc: "Chuyển hóa băng ngầm thành nước sạch và nhiên liệu tên lửa để phi hành gia tự cung tự cấp.", planet: "Sao Hỏa", emoji: "🔴", status: "status-robot", exploration: "Chưa có con người đặt chân (Mới chỉ có các xe robot tự hành hoạt động)" },
-            { id: 7, title: "Vượt qua vành đai bức xạ cực mạnh xung quanh Sao Mộc", desc: "Từ trường khổng lồ tạo ra các hạt năng lượng cao phá hủy nhanh chóng vi mạch điện tử.", planet: "Sao Mộc", emoji: "🟠", status: "status-none", exploration: "Chưa từng có con người đặt chân (Khảo sát qua các tàu tự động quỹ đạo)" },
-            { id: 8, title: "Điều hướng quỹ đạo qua hệ thống vành đai hạt băng Sao Thổ", desc: "Tránh va chạm với hàng tỷ khối băng chuyển động siêu nhanh khi tàu lao qua khe hở hành tinh.", planet: "Sao Thổ", emoji: "🪐", status: "status-none", exploration: "Chưa từng có con người đặt chân (Khảo sát hoàn toàn bằng tàu Cassini)" },
-            { id: 9, title: "Cung cấp năng lượng hạt nhân độc lập tại Sao Thiên Vương", desc: "Ở quá xa Mặt Trời khiến pin mặt trời vô tác dụng, đòi hỏi máy phát nhiệt điện phóng xạ (RTG).", planet: "Sao Thiên Vương", emoji: "🔵", status: "status-none", exploration: "Chưa từng có con người đặt chân (Chỉ có tàu Voyager 2 lướt qua năm 1986)" },
-            { id: 10, title: "Giải mã thông tin tầm xa tại biên giới tối tăm Sao Hải Vương", desc: "Độ trễ tín hiệu lên tới hàng giờ chiều đi, cường độ tín hiệu thu về cực kỳ yếu ở vùng ngoài cùng.", planet: "Sao Hải Vương", emoji: "🌊", status: "status-none", exploration: "Chưa từng có con người đặt chân (Chỉ có Voyager 2 lướt qua năm 1989)" }
+        // Dữ liệu chi tiết hành tinh độc lập
+        const celestialData = [
+            {
+                id: "sun",
+                name: "☀️ Mặt Trời",
+                status: "status-none",
+                statusText: "🔴 Chưa từng có con người đặt chân (Chỉ có tàu không người lái bay xuyên vành nhật hoa)",
+                desc: "Thách thức cốt lõi: Chịu đựng bức xạ cực đoan và nhiệt độ hàng triệu độ C. Tàu Parker Solar Probe phải tiếp cận vùng vành nhật hoa để giải mã nguồn gốc bão từ."
+            },
+            {
+                id: "moon",
+                name: "🌕 Mặt Trăng",
+                status: "status-human",
+                statusText: "🟢 Đã có con người đặt chân (Chương trình Apollo lịch sử & Artemis)",
+                desc: "Thách thức cốt lõi: Xây dựng trạm trú ẩn dài hạn, xử lý lớp bụi Regolith sắc nhọn bám dính thiết bị, và khai thác nguồn nước đá vùng cực."
+            },
+            {
+                id: "mercury",
+                name: "☿️ Sao Thủy",
+                status: "status-robot",
+                statusText: "🟡 Robot/Tàu tự hành khảo sát (Chưa có con người đặt chân)",
+                desc: "Thách thức cốt lõi: Biên độ nhiệt khủng khiếp chênh lệch từ -180°C lên tới 430°C giữa ngày và đêm do thiếu lớp khí quyển giữ nhiệt."
+            },
+            {
+                id: "venus",
+                name: "♀️ Sao Kim",
+                status: "status-none",
+                statusText: "🔴 Chưa từng có con người đặt chân (Áp suất & axit hủy diệt robot)",
+                desc: "Thách thức cốt lõi: Áp suất khí quyển gấp 92 lần Trái Đất cùng nhiệt độ 465°C làm tan chảy chì trong vài phút. Cần vi mạch Silicon-carbide."
+            },
+            {
+                id: "earth",
+                name: "🌍 Trái Đất",
+                status: "status-human",
+                statusText: "🟢 Nơi con người sinh sống và làm chủ hoàn toàn",
+                desc: "Thách thức cốt lõi: Quản lý rác thải quỹ đạo chuyển động 28.000 km/h, duy trì hệ thống hỗ trợ sự sống khép kín 98%, và phòng thủ tiểu hành tinh."
+            },
+            {
+                id: "mars",
+                name: "🔴 Sao Hỏa",
+                status: "status-robot",
+                statusText: "🟡 Robot tự hành hoạt động (Chưa có con người đặt chân)",
+                desc: "Thách thức cốt lõi: Chống chọi bức xạ vũ trụ, bão bụi toàn cầu, và ứng dụng công nghệ ISRU tự động tạo nước và nhiên liệu tên lửa."
+            },
+            {
+                id: "jupiter",
+                name: "🟠 Sao Mộc",
+                status: "status-none",
+                statusText: "🔴 Chưa từng có con người đặt chân (Bức xạ và từ trường khổng lồ)",
+                desc: "Thách thức cốt lõi: Vượt qua lớp từ trường khổng lồ tạo ra các vành đai bức xạ năng lượng cao phá hủy nhanh chóng linh kiện điện tử."
+            },
+            {
+                id: "saturn",
+                name: "🪐 Sao Thổ",
+                status: "status-none",
+                statusText: "🔴 Chưa từng có con người đặt chân (Hệ thống vành đai băng phức tạp)",
+                desc: "Thách thức cốt lõi: Điều hướng quỹ đạo an toàn qua hàng tỷ hạt băng chuyển động tốc độ siêu nhanh bao quanh các vành đai."
+            },
+            {
+                id: "uranus",
+                name: "🔵 Sao Thiên Vương",
+                status: "status-none",
+                statusText: "🔴 Chưa từng có con người đặt chân (Hành tinh băng giá xa xôi)",
+                desc: "Thách thức cốt lõi: Khoảng cách quá xa khiến năng lượng mặt trời suy giảm nặng, bắt buộc dùng máy phát hạt nhân RTG độc lập."
+            },
+            {
+                id: "neptune",
+                name: "🌊 Sao Hải Vương",
+                status: "status-none",
+                statusText: "🔴 Chưa từng có con người đặt chân (Biên giới tối tăm xa nhất)",
+                desc: "Thách thức cốt lõi: Độ trễ tín hiệu liên lạc mất hàng giờ đồng hồ và cường độ tín hiệu cực kỳ yếu ở vùng biên giới ngoài cùng."
+            }
         ];
 
-        // 20 CÂU HỎI TRẮC NGHIỆM CHUYÊN SÂU
+        // 20 câu hỏi trắc nghiệm chuyên sâu
         const quizData = [
             {
                 question: "1. Tính đến nay, thiên thể ngoài Trái Đất nào là nơi duy nhất con người từng trực tiếp đặt chân tới?",
@@ -547,7 +582,8 @@
         let score = 0;
         let answered = false;
 
-        function switchMode(mode) {
+        // Chuyển đổi qua lại giữa chế độ Chơi Trắc Nghiệm và Khám Phá Hành Tinh
+        function switchMainMode(mode) {
             const btnGame = document.getElementById('btnGameMode');
             const btnExplore = document.getElementById('btnExploreMode');
             const gameSec = document.getElementById('gameSection');
@@ -563,10 +599,10 @@
                 btnGame.classList.remove('active');
                 gameSec.style.display = 'none';
                 exploreSec.style.display = 'block';
-                renderIssues(issues);
             }
         }
 
+        // Logic Trò Chơi Trắc Nghiệm 20 Câu
         function loadQuestion() {
             answered = false;
             const currentQ = quizData[currentQuestionIndex];
@@ -599,7 +635,7 @@
 
             if (selectedIndex === currentQ.correct) {
                 btnElement.classList.add('correct');
-                score += 5; 
+                score += 5;
             } else {
                 btnElement.classList.add('wrong');
                 allBtns[currentQ.correct].classList.add('correct');
@@ -632,57 +668,58 @@
             loadQuestion();
         }
 
-        function renderIssues(data) {
-            const grid = document.getElementById('issuesGrid');
-            grid.innerHTML = '';
-            data.forEach(item => {
-                let badgeText = "";
-                if(item.status === "status-human") badgeText = "🟢 Có con người đặt chân/sinh sống";
-                else if(item.status === "status-robot") badgeText = "🟡 Robot/Tàu tự hành";
-                else badgeText = "🔴 Chưa từng có con người đặt chân";
+        // Khởi tạo phần Khám Phá Từng Hành Tinh
+        function initExploreApp() {
+            const navContainer = document.getElementById('planetNav');
+            const pagesContainer = document.getElementById('pagesContainer');
 
-                const card = document.createElement('div');
-                card.className = 'card';
-                card.innerHTML = `
-                    <div>
-                        <div class="card-header-info">
-                            <span class="card-number">Vấn đề #${item.id}</span>
-                            <span class="planet-tag">${item.emoji} ${item.planet}</span>
+            celestialData.forEach((item, index) => {
+                const btn = document.createElement('button');
+                btn.className = `nav-tab ${index === 0 ? 'active' : ''}`;
+                btn.innerText = item.name;
+                btn.onclick = () => switchPlanetPage(item.id, btn);
+                navContainer.appendChild(btn);
+
+                const page = document.createElement('div');
+                page.className = `planet-page ${index === 0 ? 'active' : ''}`;
+                page.id = `page-${item.id}`;
+
+                page.innerHTML = `
+                    <div class="planet-header-card">
+                        <h2>${item.name}</h2>
+                        <div class="status-badge ${item.status}">${item.statusText}</div>
+                        <p class="planet-desc">${item.desc}</p>
+                        
+                        <!-- Nút Like / Dislike -->
+                        <div class="feedback-container">
+                            <button class="feedback-btn" onclick="handleFeedback('${item.id}', 'like')">👍 Thích (<span id="like-count-${item.id}">15</span>)</button>
+                            <button class="feedback-btn" onclick="handleFeedback('${item.id}', 'dislike')">👎 Không thích (<span id="dislike-count-${item.id}">0</span>)</button>
                         </div>
-                        <div class="status-badge ${item.status}">${badgeText}</div>
-                        <h3>${item.title}</h3>
-                        <p>${item.desc}</p>
-                    </div>
-                    <div style="font-size:0.75rem; opacity:0.7; margin-top:12px; border-top:1px solid var(--card-border); padding-top:8px;">
-                        Nhấn để xem chi tiết thông tin lịch sử →
+                        <div class="feedback-msg" id="msg-${item.id}">Cảm ơn bạn đã đánh giá về ${item.name}!</div>
                     </div>
                 `;
-                card.onclick = () => openModal(item);
-                grid.appendChild(card);
+                pagesContainer.appendChild(page);
             });
         }
 
-        function filterPlanet(planetName) {
-            document.querySelectorAll('.planet-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            const filtered = issues.filter(i => i.planet === planetName);
-            renderIssues(filtered);
+        function switchPlanetPage(planetId, btnElement) {
+            document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.planet-page').forEach(p => p.classList.remove('active'));
+
+            btnElement.classList.add('active');
+            document.getElementById(`page-${planetId}`).classList.add('active');
         }
 
-        function filterAll() {
-            document.querySelectorAll('.planet-btn').forEach(btn => btn.classList.remove('active'));
-            renderIssues(issues);
-        }
+        function handleFeedback(planetId, type) {
+            const countSpan = document.getElementById(`${type}-count-${planetId}`);
+            let currentVal = parseInt(countSpan.innerText);
+            countSpan.innerText = currentVal + 1;
 
-        function openModal(item) {
-            document.getElementById('modalTitle').innerText = `${item.emoji} Thách thức #${item.id}: ${item.title}`;
-            document.getElementById('modalMeta').innerHTML = `<strong>Khu vực:</strong> ${item.planet} | <strong>Trạng thái:</strong> ${item.exploration}`;
-            document.getElementById('modalDesc').innerText = `${item.desc}\n\nĐây là bài toán thực tế thuộc hệ thống nghiên cứu không gian sâu của NASA, giúp bạn nắm bắt toàn diện giới hạn công nghệ hiện tại của nhân loại.`;
-            document.getElementById('infoModal').style.display = 'flex';
-        }
-
-        function closeModal() {
-            document.getElementById('infoModal').style.display = 'none';
+            const msgBox = document.getElementById(`msg-${planetId}`);
+            msgBox.style.display = 'block';
+            setTimeout(() => {
+                msgBox.style.display = 'none';
+            }, 2500);
         }
 
         function toggleTheme() {
@@ -691,8 +728,9 @@
             body.setAttribute('data-theme', currentTheme === 'dark' ? 'light' : 'dark');
         }
 
-        // Khởi động hệ thống trò chơi 20 câu
+        // Chạy khởi động hệ thống
         loadQuestion();
+        initExploreApp();
     </script>
 </body>
 </html>
