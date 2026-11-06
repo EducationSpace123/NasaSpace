@@ -159,12 +159,25 @@
         }
 
         .card-number {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--nasa-red);
             font-weight: bold;
             margin-bottom: 8px;
             text-transform: uppercase;
         }
+
+        .status-badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .status-visited { background: rgba(40, 167, 69, 0.2); color: #28a745; border: 1px solid #28a745; }
+        .status-unvisited { background: rgba(220, 53, 69, 0.2); color: #dc3545; border: 1px solid #dc3545; }
+        .status-human { background: rgba(0, 123, 255, 0.2); color: #007bff; border: 1px solid #007bff; }
 
         .card h3 {
             font-size: 1.1rem;
@@ -204,7 +217,6 @@
         }
 
         .close-btn {
-            main-top: 20px;
             background: var(--nasa-blue);
             color: white;
             border: none;
@@ -228,25 +240,25 @@
         </div>
     </header>
 
-    <!-- Hệ mặt trời tương tác (Đầy đủ hành tinh chưa/đã đặt chân) -->
+    <!-- Hệ mặt trời tương tác -->
     <div class="solar-system">
-        <h2>Hệ Mặt Trời & Khu Vực Thách Thức</h2>
+        <h2>Hệ Mặt Trời & Trạng Thái Thám Hiểm</h2>
         <div class="planet-container">
             <button class="planet-btn" onclick="filterPlanet('Mặt Trời')">Mặt Trời</button>
             <button class="planet-btn" onclick="filterPlanet('Sao Thủy')">Sao Thủy</button>
-            <button class="planet-btn" onclick="filterPlanet('Sao Kim')">Sao Kim 🚫</button>
+            <button class="planet-btn" onclick="filterPlanet('Sao Kim')">Sao Kim</button>
             <button class="planet-btn" onclick="filterPlanet('Trái Đất')">Trái Đất</button>
             <button class="planet-btn" onclick="filterPlanet('Sao Hỏa')">Sao Hỏa</button>
-            <button class="planet-btn" onclick="filterPlanet('Sao Mộc')">Sao Mộc 🚫</button>
-            <button class="planet-btn" onclick="filterPlanet('Sao Thổ')">Sao Thổ 🚫</button>
-            <button class="planet-btn" onclick="filterPlanet('Sao Thiên Vương')">Sao Thiên Vương 🚫</button>
-            <button class="planet-btn" onclick="filterPlanet('Sao Hải Vương')">Sao Hải Vương 🚫</button>
+            <button class="planet-btn" onclick="filterPlanet('Sao Mộc')">Sao Mộc</button>
+            <button class="planet-btn" onclick="filterPlanet('Sao Thổ')">Sao Thổ</button>
+            <button class="planet-btn" onclick="filterPlanet('Sao Thiên Vương')">Sao Thiên Vương</button>
+            <button class="planet-btn" onclick="filterPlanet('Sao Hải Vương')">Sao Hải Vương</button>
         </div>
     </div>
 
     <!-- Danh sách 14 vấn đề -->
     <div class="container">
-        <h2 class="section-title">14 Thách Thức Công Nghệ & Sứ Mệnh Của NASA</h2>
+        <h2 class="section-title">14 Thách Thức Công Nghệ Của NASA</h2>
         <div class="grid" id="issuesGrid"></div>
     </div>
 
@@ -264,86 +276,100 @@
             { 
                 id: 1, 
                 title: "Khảo sát và chịu nhiệt vành nhật hoa", 
-                desc: "Đối mặt với bức xạ cực đoan và nhiệt độ hàng triệu độ C khi phóng tàu bay sát khí quyển Mặt Trời.", 
-                planet: "Mặt Trời" 
+                desc: "Đối mặt với bức xạ cực đoan khi phóng tàu bay sát khí quyển Mặt Trời.", 
+                planet: "Mặt Trời",
+                exploration: "Chưa từng có con người đặt chân (Chỉ có tàu thăm dò không người lái tiếp cận)"
             },
             { 
                 id: 2, 
                 title: "Bảo vệ thiết bị trước biên độ nhiệt Sao Thủy", 
-                desc: "Vượt qua sự chênh lệch nhiệt độ khủng khiếp giữa mặt ban ngày (thiêu đốt) và ban đêm (đóng băng) của hành tinh gần nhất.", 
-                planet: "Sao Thủy" 
+                desc: "Vượt qua sự chênh lệch nhiệt độ khủng khiếp giữa mặt ban ngày và ban đêm.", 
+                planet: "Sao Thủy",
+                exploration: "Chưa từng có con người đặt chân (Đã có tàu thăm dò bay qua và ghi hình)"
             },
             { 
                 id: 3, 
                 title: "Chế tạo thiết bị thám hiểm bề mặt Sao Kim", 
-                desc: "Nơi con người chưa từng đặt chân: Áp suất khí quyển nghiền nát kim loại và axit sulfuric ăn mòn mọi vật liệu thông thường chỉ trong vài phút.", 
-                planet: "Sao Kim" 
+                desc: "Áp suất khí quyển nghiền nát kim loại và axit sulfuric ăn mòn mọi vật liệu.", 
+                planet: "Sao Kim",
+                exploration: "Chưa từng có con người đặt chân (Tàu thăm dò chỉ trụ được vài tiếng trước khi tan chảy)"
             },
             { 
                 id: 4, 
                 title: "Quản lý rác thải quỹ đạo và phòng thủ Trái Đất", 
-                desc: "Dọn dẹp hàng triệu mảnh vỡ trôi nổi quanh Trái Đất và ngăn chặn các tiểu hành tinh va chạm.", 
-                planet: "Trái Đất" 
+                desc: "Dọn dẹp hàng triệu mảnh vỡ trôi nổi và ngăn chặn tiểu hành tinh va chạm.", 
+                planet: "Trái Đất",
+                exploration: "Nơi duy nhất con người đang sinh sống và đặt chân hoàn toàn"
             },
             { 
                 id: 5, 
                 title: "Sinh tồn và định cư lâu dài trên Sao Hỏa", 
-                desc: "Giải quyết bài toán bức xạ vũ trụ, bão bụi toàn cầu và tạo ra nước, dưỡng khí từ tài nguyên tại chỗ (ISRU).", 
-                planet: "Sao Hỏa" 
+                desc: "Giải quyết bài toán bức xạ vũ trụ, bão bụi và tạo ra dưỡng khí từ tài nguyên tại chỗ.", 
+                planet: "Sao Hỏa",
+                exploration: "Chưa có con người đặt chân (Mới chỉ có các xe tự hành robot NASA hoạt động trên bề mặt)"
             },
             { 
                 id: 6, 
                 title: "Xuyên thủng bức xạ cực mạnh quanh Sao Mộc", 
-                desc: "Nơi chưa từng có con người đặt chân: Lớp từ trường khổng lồ và vành đai bức xạ của Sao Mộc phá hủy vi mạch điện tử siêu nhanh.", 
-                planet: "Sao Mộc" 
+                desc: "Lớp từ trường khổng lồ và vành đai bức xạ phá hủy vi mạch điện tử siêu nhanh.", 
+                planet: "Sao Mộc",
+                exploration: "Chưa từng có con người đặt chân (Chỉ có các tàu thám hiểm bay qua)"
             },
             { 
                 id: 7, 
                 title: "Thám hiểm hệ thống vành đai phức tạp Sao Thổ", 
-                desc: "Nơi con người chưa tới: Điều hướng tàu thám hiểm qua hàng tỷ hạt băng chuyển động tốc độ cao quanh các vành đai của Sao Thổ.", 
-                planet: "Sao Thổ" 
+                desc: "Điều hướng tàu thám hiểm qua hàng tỷ hạt băng chuyển động tốc độ cao.", 
+                planet: "Sao Thổ",
+                exploration: "Chưa từng có con người đặt chân (Tàu Cassini từng khảo sát trực tiếp quỹ đạo)"
             },
             { 
                 id: 8, 
                 title: "Thám hiểm hành tinh băng giá Sao Thiên Vương", 
-                desc: "Nơi con người chưa tới: Khoảng cách xa kinh khủng làm suy giảm năng lượng mặt trời, đòi hỏi nguồn điện hạt nhân độc lập hoàn toàn.", 
-                planet: "Sao Thiên Vương" 
+                desc: "Khoảng cách xa làm suy giảm năng lượng mặt trời, đòi hỏi nguồn điện hạt nhân độc lập.", 
+                planet: "Sao Thiên Vương",
+                exploration: "Chưa từng có con người đặt chân (Chỉ có một tàu Voyager 2 bay ngang qua năm 1986)"
             },
             { 
                 id: 9, 
                 title: "Truyền thông liên hành tinh tầm xa Sao Hải Vương", 
-                desc: "Nơi con người chưa tới: Độ trễ tín hiệu hàng giờ liền và không gian tối đen như mực tại biên giới ngoài cùng của Hệ Mặt Trời.", 
-                planet: "Sao Hải Vương" 
+                desc: "Độ trễ tín hiệu hàng giờ liền và không gian tối đen ở biên giới Hệ Mặt Trời.", 
+                planet: "Sao Hải Vương",
+                exploration: "Chưa từng có con người đặt chân (Chưa có tàu nào dừng lại, chỉ có Voyager 2 bay lướt qua)"
             },
             { 
                 id: 10, 
                 title: "Hệ thống hỗ trợ sự sống khép kín 98%", 
-                desc: "Tái chế toàn bộ nước tiểu, mồ hôi và không khí thành tài nguyên sạch phục vụ các chuyến bay dài ngày.", 
-                planet: "Trái Đất" 
+                desc: "Tái chế toàn bộ nước và không khí phục vụ các chuyến bay dài ngày.", 
+                planet: "Trái Đất",
+                exploration: "Nơi duy nhất con người đang sinh sống và đặt chân hoàn toàn"
             },
             { 
                 id: 11, 
                 title: "Động cơ đẩy nhiệt và ion hạt nhân", 
-                desc: "Rút ngắn thời gian du hành liên hành tinh từ hàng năm xuống còn vài tháng bằng công nghệ năng lượng mới.", 
-                planet: "Sao Mộc" 
+                desc: "Rút ngắn thời gian du hành liên hành tinh từ hàng năm xuống còn vài tháng.", 
+                planet: "Sao Mộc",
+                exploration: "Chưa từng có con người đặt chân (Ứng dụng cho tàu không gian sâu)"
             },
             { 
                 id: 12, 
                 title: "Tác động vi trọng lực lên cơ thể người", 
-                desc: "Ngăn chặn triệt để tình trạng mất xương, teo cơ và thoái hóa thần kinh thị giác của phi hành gia.", 
-                planet: "Trái Đất" 
+                desc: "Ngăn chặn tình trạng mất xương, teo cơ và thoái hóa thị giác của phi hành gia.", 
+                planet: "Trái Đất",
+                exploration: "Nơi duy nhất con người đang sinh sống và đặt chân hoàn toàn"
             },
             { 
                 id: 13, 
                 title: "Công nghệ in 3D cấu trúc ngoài Trái Đất", 
-                desc: "Sử dụng chính đất đá tại chỗ (regolith) để tự động xây dựng nhà ở cho phi hành gia mà không cần chở vật liệu từ Trái Đất.", 
-                planet: "Sao Hỏa" 
+                desc: "Sử dụng đất đá tại chỗ (regolith) để tự động xây dựng nhà ở cho phi hành gia.", 
+                planet: "Sao Hỏa",
+                exploration: "Chưa có con người đặt chân (Đang thử nghiệm công nghệ tự động hóa)"
             },
             { 
                 id: 14, 
                 title: "Bảo vệ hành tinh (Planetary Protection)", 
-                desc: "Ngăn chặn việc mang vi khuẩn từ Trái Đất làm ô nhiễm các thế giới khác và mang mầm bệnh lạ ngược về nhà.", 
-                planet: "Sao Thủy" 
+                desc: "Ngăn chặn mang vi khuẩn Trái Đất làm ô nhiễm thiên thể khác và ngược lại.", 
+                planet: "Sao Thủy",
+                exploration: "Chính sách kiểm soát chung cho mọi sứ mệnh không gian"
             }
         ];
 
@@ -351,10 +377,18 @@
             const grid = document.getElementById('issuesGrid');
             grid.innerHTML = '';
             data.forEach(item => {
+                let badgeClass = "status-unvisited";
+                if(item.exploration.includes("duy nhất con người đang sinh sống")) {
+                    badgeClass = "status-human";
+                } else if(item.exploration.includes("Chưa có con người đặt chân") || item.exploration.includes("Chưa từng có con người đặt chân")) {
+                    badgeClass = "status-unvisited";
+                }
+
                 const card = document.createElement('div');
                 card.className = 'card';
                 card.innerHTML = `
                     <div class="card-number">Thách thức #${item.id} • ${item.planet}</div>
+                    <div class="status-badge ${badgeClass}">${item.exploration}</div>
                     <h3>${item.title}</h3>
                     <p>${item.desc}</p>
                 `;
@@ -383,7 +417,7 @@
 
         function openModal(item) {
             document.getElementById('modalTitle').innerText = `Thách thức #${item.id}: ${item.title}`;
-            document.getElementById('modalDesc').innerText = `${item.desc} (Khu vực không gian trọng điểm: ${item.planet})`;
+            document.getElementById('modalDesc').innerText = `${item.desc}\n\n[Trạng thái thám hiểm]: ${item.exploration} (Khu vực: ${item.planet})`;
             document.getElementById('infoModal').style.display = 'flex';
         }
 
