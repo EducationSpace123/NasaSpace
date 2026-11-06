@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NASA - Trò Chơi & Cổng Thông Tin Thách Thức Không Gian</title>
+    <title>NASA - Trò Chơi Trắc Nghiệm 20 Câu & Cổng Dữ Liệu Không Gian</title>
     <style>
         :root {
             --bg-color: #0b0d19;
@@ -125,7 +125,7 @@
         }
 
         .game-container {
-            max-width: 800px;
+            max-width: 850px;
             margin: 0 auto;
             background: var(--card-bg);
             border: 1px solid var(--card-border);
@@ -145,7 +145,7 @@
         }
 
         .question-box {
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             margin-bottom: 20px;
             line-height: 1.5;
             font-weight: 600;
@@ -165,7 +165,7 @@
             border-radius: 8px;
             cursor: pointer;
             text-align: left;
-            font-size: 1rem;
+            font-size: 0.98rem;
             font-weight: 500;
         }
 
@@ -185,7 +185,7 @@
             padding: 15px;
             border-radius: 6px;
             margin-bottom: 20px;
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             line-height: 1.5;
         }
 
@@ -335,7 +335,7 @@
     <header>
         <div class="logo-area">
             <div class="nasa-badge">NASA</div>
-            <h1>Cổng Trò Chơi & Dữ Liệu Không Gian</h1>
+            <h1>Cổng Trò Chơi Trắc Nghiệm 20 Câu & Dữ Liệu Không Gian</h1>
         </div>
         <div>
             <button class="btn" onclick="toggleTheme()">☀️ / 🌙 Giao Diện</button>
@@ -345,16 +345,16 @@
     <div class="main-container">
         <!-- Nút lựa chọn tính năng chính -->
         <div class="mode-selector">
-            <button class="mode-btn active" id="btnGameMode" onclick="switchMode('game')">🎮 Chơi Trò Chơi Trắc Nghiệm</button>
+            <button class="mode-btn active" id="btnGameMode" onclick="switchMode('game')">🎮 Chơi Trò Chơi Trắc Nghiệm (20 Câu)</button>
             <button class="mode-btn" id="btnExploreMode" onclick="switchMode('explore')">📚 Tra Cứu Thách Thức NASA</button>
         </div>
 
-        <!-- 1. PHẦN TRÒ CHƠI -->
+        <!-- 1. PHẦN TRÒ CHƠI 20 CÂU -->
         <div class="game-section" id="gameSection">
             <div class="game-container">
                 <div id="quizScreen">
                     <div class="game-header">
-                        <span id="questionCounter">Câu hỏi 1/5</span>
+                        <span id="questionCounter">Câu hỏi 1/20</span>
                         <span id="scoreTracker">Điểm: 0</span>
                     </div>
                     <div class="question-box" id="questionText">Đang tải câu hỏi...</div>
@@ -365,14 +365,14 @@
                 </div>
 
                 <div class="result-screen" id="resultScreen">
-                    <h2 style="color: var(--nasa-red); margin-bottom: 15px;">Hoàn Thành Sứ Mệnh!</h2>
+                    <h2 style="color: var(--nasa-red); margin-bottom: 15px;">Hoàn Thành Sứ Mệnh 20 Câu!</h2>
                     <p id="finalScoreText" style="font-size: 1.1rem; margin-bottom: 20px;"></p>
                     <button class="btn" onclick="restartGame()" style="padding: 12px 25px;">Chơi Lại Từ Đầu</button>
                 </div>
             </div>
         </div>
 
-        <!-- 2. PHẦN TRA CỨU THÔNG TIN & EMOTE -->
+        <!-- 2. PHẦN TRA CỨU THÔNG TIN -->
         <div class="explore-section" id="exploreSection">
             <div class="solar-system">
                 <h3>Hệ Thống Lọc Thiên Thể Không Gian</h3>
@@ -395,7 +395,7 @@
         </div>
     </div>
 
-    <!-- Hộp thoại Modal chi tiết vấn đề -->
+    <!-- Modal Chi Tiết -->
     <div class="modal" id="infoModal">
         <div class="modal-content">
             <h3 id="modalTitle">Tiêu đề</h3>
@@ -406,7 +406,6 @@
     </div>
 
     <script>
-        // Danh sách 14 vấn đề khoa học thực tế kèm theo Emote biểu tượng cho từng hành tinh
         const issues = [
             { id: 1, title: "Khảo sát khí quyển và chịu nhiệt vành nhật hoa", desc: "Tàu Parker Solar Probe đối mặt với bức xạ nhiệt hàng triệu độ C để thu thập dữ liệu nguồn gốc bão từ.", planet: "Mặt Trời", emoji: "☀️", status: "status-none", exploration: "Chưa từng có con người đặt chân (Chỉ có tàu không người lái bay xuyên qua)" },
             { id: 2, title: "Xây dựng trạm trú ẩn và khai thác băng cực Mặt Trăng (Artemis)", desc: "Khắc phục bụi regolith sắc nhọn bám dính thiết bị và khai thác nước đá phục vụ căn cứ dài hạn.", planet: "Mặt Trăng", emoji: "🌕", status: "status-human", exploration: "Đã có con người đặt chân (Chương trình Apollo lịch sử và sắp quay lại)" },
@@ -417,44 +416,130 @@
             { id: 7, title: "Vượt qua vành đai bức xạ cực mạnh xung quanh Sao Mộc", desc: "Từ trường khổng lồ tạo ra các hạt năng lượng cao phá hủy nhanh chóng vi mạch điện tử.", planet: "Sao Mộc", emoji: "🟠", status: "status-none", exploration: "Chưa từng có con người đặt chân (Khảo sát qua các tàu tự động quỹ đạo)" },
             { id: 8, title: "Điều hướng quỹ đạo qua hệ thống vành đai hạt băng Sao Thổ", desc: "Tránh va chạm với hàng tỷ khối băng chuyển động siêu nhanh khi tàu lao qua khe hở hành tinh.", planet: "Sao Thổ", emoji: "🪐", status: "status-none", exploration: "Chưa từng có con người đặt chân (Khảo sát hoàn toàn bằng tàu Cassini)" },
             { id: 9, title: "Cung cấp năng lượng hạt nhân độc lập tại Sao Thiên Vương", desc: "Ở quá xa Mặt Trời khiến pin mặt trời vô tác dụng, đòi hỏi máy phát nhiệt điện phóng xạ (RTG).", planet: "Sao Thiên Vương", emoji: "🔵", status: "status-none", exploration: "Chưa từng có con người đặt chân (Chỉ có tàu Voyager 2 lướt qua năm 1986)" },
-            { id: 10, title: "Giải mã thông tin tầm xa tại biên giới tối tăm Sao Hải Vương", desc: "Độ trễ tín hiệu lên tới hàng giờ chiều đi, cường độ tín hiệu thu về cực kỳ yếu ở vùng ngoài cùng.", planet: "Sao Hải Vương", emoji: "🌊", status: "status-none", exploration: "Chưa từng có con người đặt chân (Chỉ có Voyager 2 lướt qua năm 1989)" },
-            { id: 11, title: "Hệ thống hỗ trợ sự sống khép kín 98%", desc: "Tái chế toàn bộ mồ hôi, nước tiểu và không khí thành nước uống và O2 tinh khiết phục vụ chuyến bay dài.", planet: "Trái Đất", emoji: "🌍", status: "status-human", exploration: "Nơi duy nhất con người đang sinh sống và làm chủ hoàn toàn" },
-            { id: 12, title: "Phát triển động cơ đẩy nhiệt và ion hạt nhân", desc: "Giảm thời gian di chuyển liên hành tinh từ nhiều năm xuống còn vài tuần bằng năng lượng phản ứng.", planet: "Sao Mộc", emoji: "🟠", status: "status-robot", exploration: "Chưa từng có con người đặt chân (Công nghệ đang nghiên cứu cho tàu tương lai)" },
-            { id: 13, title: "Khắc phục hội chứng mất xương do vi trọng lực", desc: "Phi hành gia mất 1-1.5% mật độ xương mỗi tháng, bắt buộc phải tập thể dục cường độ cao trong không gian.", planet: "Trái Đất", emoji: "🌍", status: "status-human", exploration: "Nơi duy nhất con người đang sinh sống và làm chủ hoàn toàn" },
-            { id: 14, title: "In 3D cấu trúc trú ẩn từ bụi đá Regolith", desc: "Ứng dụng robot tự động nhặt đất đá tại chỗ để in ra các vòm nhà chống bức xạ ngoài không gian.", planet: "Sao Hỏa", emoji: "🔴", status: "status-robot", exploration: "Chưa có con người đặt chân (Đang trong giai đoạn thử nghiệm tự động hóa)" }
+            { id: 10, title: "Giải mã thông tin tầm xa tại biên giới tối tăm Sao Hải Vương", desc: "Độ trễ tín hiệu lên tới hàng giờ chiều đi, cường độ tín hiệu thu về cực kỳ yếu ở vùng ngoài cùng.", planet: "Sao Hải Vương", emoji: "🌊", status: "status-none", exploration: "Chưa từng có con người đặt chân (Chỉ có Voyager 2 lướt qua năm 1989)" }
         ];
 
-        // Câu hỏi trò chơi trắc nghiệm
+        // 20 CÂU HỎI TRẮC NGHIỆM CHUYÊN SÂU
         const quizData = [
             {
-                question: "Tính đến nay, ngoài Trái Đất ra thì con người đã trực tiếp đặt chân lên thiên thể nào trong không gian?",
-                options: ["A. Chỉ có trên Mặt Trăng 🌕", "B. Cả Sao Hỏa và Sao Kim", "C. Toàn bộ các hành tinh", "D. Chưa từng đặt chân ở đâu"],
+                question: "1. Tính đến nay, thiên thể ngoài Trái Đất nào là nơi duy nhất con người từng trực tiếp đặt chân tới?",
+                options: ["A. Mặt Trăng 🌕", "B. Sao Hỏa 🔴", "C. Sao Kim ♀️", "D. Trái Đất 🌍"],
                 correct: 0,
-                explanation: "Mặt Trăng 🌕 là thiên thể ngoài Trái Đất duy nhất mà con người từng đặt chân tới (trong chương trình Apollo)."
+                explanation: "Mặt Trăng 🌕 là thiên thể duy nhất ngoài Trái Đất mà con người từng đặt chân tới trong chương trình Apollo."
             },
             {
-                question: "Hành tinh nào có môi trường khắc nghiệt làm thiết bị tan chảy chỉ trong vài phút và con người chưa từng đặt chân?",
-                options: ["A. Sao Hỏa", "B. Sao Kim ♀️ (Áp suất cực đại & axit)", "C. Trái Đất", "D. Mặt Trăng"],
+                question: "2. Hành tinh nào trong hệ mặt trời có áp suất khí quyển nghiền nặt kim loại và nhiệt độ bề mặt nóng chảy chì (465°C)?",
+                options: ["A. Sao Thủy ☿️", "B. Sao Kim ♀️", "C. Sao Mộc 🟠", "D. Sao Hỏa 🔴"],
                 correct: 1,
-                explanation: "Sao Kim ♀️ có nhiệt độ bề mặt lên tới 465°C và áp suất lớn, tàu thăm dò chỉ trụ được vài phút."
+                explanation: "Sao Kim ♀️ có nhiệt độ khắc nghiệt và áp suất khí quyển cực lớn, con người chưa từng đặt chân tới."
             },
             {
-                question: "Thách thức lớn nhất đối với phi hành gia sống lâu ngày trong môi trường vi trọng lực (không trọng lực) là gì?",
-                options: ["A. Thiếu không khí thở", "B. Mất mật độ xương và teo cơ", "C. Không nhìn thấy các vì sao", "D. Nhiệt độ cơ thể đóng băng"],
+                question: "3. Thách thức lớn nhất đối với phi hành gia khi sống dài ngày trong môi trường không trọng lực là gì?",
+                options: ["A. Thiếu oxy trầm trọng", "B. Mất mật độ xương và teo cơ", "C. Nhiệt độ cơ thể bị đóng băng", "D. Không nhìn thấy các vì sao"],
                 correct: 1,
-                explanation: "Do không chịu trọng lực, phi hành gia mất 1-1.5% mật độ xương mỗi tháng, đòi hỏi phải tập thể dục liên tục."
+                explanation: "Thiếu trọng lực khiến xương không phải chịu tải, dẫn đến mất 1-1.5% mật độ xương mỗi tháng."
             },
             {
-                question: "Hành tinh nào có từ trường khổng lồ tạo ra các vành đai bức xạ nguy hiểm phá hủy vi mạch điện tử?",
-                options: ["A. Sao Thủy", "B. Sao Mộc 🟠", "C. Sao Hỏa", "D. Sao Thiên Vương"],
+                question: "4. Hành tinh nào sở hữu lớp từ trường và vành đai bức xạ mạnh nhất, đe dọa các linh kiện điện tử của tàu thám hiểm?",
+                options: ["A. Sao Mộc 🟠", "B. Sao Thủy ☿️", "C. Sao Hải Vương 🌊", "D. Sao Thiên Vương 🔵"],
+                correct: 0,
+                explanation: "Sao Mộc 🟠 có từ trường khổng lồ tạo ra các vành đai bức xạ nguy hiểm bậc nhất hệ mặt trời."
+            },
+            {
+                question: "5. Công nghệ ISRU (Khai thác tài nguyên tại chỗ) chủ yếu được nghiên cứu để ứng dụng trên hành tinh nào?",
+                options: ["A. Sao Kim ♀️", "B. Sao Hỏa 🔴", "C. Sao Thổ 🪐", "D. Mặt Trăng 🌕"],
                 correct: 1,
-                explanation: "Sao Mộc 🟠 sở hữu từ trường cực mạnh, là một trong những thách thức lớn nhất cho tàu thám hiểm không gian sâu."
+                explanation: "ISRU trên Sao Hỏa 🔴 giúp biến băng ngầm thành nước sạch và nhiên liệu tên lửa phục vụ chiều về."
             },
             {
-                question: "Công nghệ ISRU (Khai thác tài nguyên tại chỗ) trên Sao Hỏa nhằm mục đích chính là gì?",
-                options: ["A. Đào vàng mang về Trái Đất", "B. Xây khu nghỉ dưỡng thương mại", "C. Dùng băng ngầm tạo nước sạch và nhiên liệu tên lửa", "D. Trồng hoa màu xuất khẩu"],
+                question: "6. Tàu không gian nào của NASA đã dũng cảm bay sát vùng vành nhật hoa để nghiên cứu Mặt Trời ☀️?",
+                options: ["A. Voyager 2", "B. Parker Solar Probe", "C. Cassini", "D. Juno"],
+                correct: 1,
+                explanation: "Tàu Parker Solar Probe chịu nhiệt độ cực đoan để nghiên cứu trực tiếp khí quyển Mặt Trời ☀️."
+            },
+            {
+                question: "7. Tại sao các tàu thám hiểm đến Sao Thiên Vương 🔵 và Sao Hải Vương 🌊 không thể dùng tấm pin mặt trời thông thường?",
+                options: ["A. Vì ở đó quá gần Mặt Trời làm cháy pin", "B. Vì ở đó quá xa, ánh sáng quá yếu", "C. Vì bị gió bụi thổi bay hoàn toàn", "D. Vì pin bị đóng băng không dẫn điện"],
+                correct: 1,
+                explanation: "Khoảng cách quá xa khiến năng lượng mặt trời suy giảm nặng, đòi hỏi nguồn điện hạt nhân RTG."
+            },
+            {
+                question: "8. Trạm Vũ trụ Quốc tế (ISS) hoặc các hệ thống khép kín đòi hỏi tỷ lệ tái chế nước và không khí đạt mức bao nhiêu phần trăm?",
+                options: ["A. 50%", "B. 75%", "C. 98%", "D. 100% hoàn hảo tuyệt đối"],
                 correct: 2,
-                explanation: "ISRU giúp phi hành gia tự cung tự cấp nước uống và oxy/hydro làm nhiên liệu chiều về trực tiếp từ bề mặt Sao Hỏa 🔴."
+                explanation: "Hệ thống khép kín của NASA yêu cầu tái chế đạt 98% mồ hôi, nước tiểu và CO2 thành tài nguyên sạch."
+            },
+            {
+                question: "9. Chương trình Artemis của NASA hiện đang tập trung chinh phục và xây dựng căn cứ dài hạn tại đâu?",
+                options: ["A. Mặt Trăng 🌕", "B. Sao Kim ♀️", "C. Sao Mộc 🟠", "D. Sao Thổ 🪐"],
+                correct: 0,
+                explanation: "Chương trình Artemis đặt mục tiêu đưa con người quay trở lại Mặt Trăng 🌕 và xây dựng trạm trú ẩn."
+            },
+            {
+                question: "10. Bụi Regolith bám dính trên các thiên thể không có khí quyển như Mặt Trăng 🌕 có đặc điểm nguy hiểm gì?",
+                options: ["A. Mịn và mềm như nhung", "B. Sắc nhọn như mảnh thủy tinh nhỏ", "C. Chứa chất độc thần kinh dạng khí", "D. Tự phát nổ khi gặp ánh sáng"],
+                correct: 1,
+                explanation: "Bụi Regolith trên Mặt Trăng 🌕 rất sắc nhọn do không bị bào mòn bởi gió, gây mài mòn thiết bị nghiêm trọng."
+            },
+            {
+                question: "11. Tàu vũ trụ duy nhất trong lịch sử từng bay lướt qua Sao Thiên Vương 🔵 và Sao Hải Vương 🌊 là gì?",
+                options: ["A. Voyager 2", "B. Pioneer 10", "C. Curiosity", "D. Opportunity"],
+                correct: 0,
+                explanation: "Voyager 2 là tàu thám hiểm duy nhất bay lướt qua hai hành tinh băng giá vòng ngoài này vào thập niên 80."
+            },
+            {
+                question: "12. Yếu tố nào sau đây gây cản trở lớn nhất cho việc truyền thông tin liên hành tinh từ Sao Hải Vương 🌊 về Trái Đất 🌍?",
+                options: ["A. Sóng phát ra bị đóng băng", "B. Độ trễ tín hiệu lên tới hàng giờ và tín hiệu cực kỳ yếu", "C. Bị hành tinh khác nuốt trọn sóng", "D. Tốc độ ánh sáng bị chậm lại"],
+                correct: 1,
+                explanation: "Do khoảng cách quá xa, độ trễ tín hiệu mất nhiều giờ và cường độ tín hiệu suy giảm nghiêm trọng."
+            },
+            {
+                question: "13. Tên loại vi mạch siêu bền được nghiên cứu để giúp thiết bị điện tử sống sót trong môi trường nhiệt độ cực cao của Sao Kim ♀️ là gì?",
+                options: ["A. Silicon-Carbide", "B. Đồng nguyên chất", "C. Nhôm dẻo chịu nhiệt", "D. Thạch anh lỏng"],
+                correct: 0,
+                explanation: "Vi mạch làm từ Silicon-carbide giúp thiết bị không bị phá hủy dưới nhiệt độ 465°C của Sao Kim ♀️."
+            },
+            {
+                question: "14. Vấn đề 'Rác thải quỹ đạo' xung quanh Trái Đất 🌍 nguy hiểm như thế nào đối với các vệ tinh?",
+                options: ["A. Làm ô nhiễm nguồn nước biển", "B. Gây cản trở ánh sáng mặt trời chiếu xuống", "C. Chuyển động tốc độ siêu cao có thể đâm thủng tàu vũ trụ", "D. Làm Trái Đất lệch khỏi quỹ đạo quay"],
+                correct: 2,
+                explanation: "Rác thải quỹ đạo bay với vận tốc ~28.000 km/h, có sức công phá cực lớn khi va chạm."
+            },
+            {
+                question: "15. Công nghệ In 3D ngoài hành tinh dự kiến sử dụng nguyên liệu chính nào có sẵn trên bề mặt Sao Hỏa 🔴?",
+                    options: ["A. Nhựa tổng hợp", "B. Đất đá bụi Regolith địa phương", "C. Cát thạch anh mịn", "D. Gỗ hóa thạch"],
+                correct: 1,
+                explanation: "Robot sẽ tận dụng bụi đất đá Regolith ngay tại chỗ để in ra các cấu trúc vòm nhà trú ẩn."
+            },
+            {
+                question: "16. Chính sách 'Bảo vệ hành tinh' (Planetary Protection) trong không gian nhằm mục đích gì?",
+                options: ["A. Ngăn chặn vi khuẩn Trái Đất làm ô nhiễm thế giới khác và ngược lại", "B. Bảo vệ các phi hành gia khỏi người ngoài hành tinh", "C. Không cho phép tên lửa phóng qua các vành đai sao", "D. Giữ gìn vẻ đẹp tự nhiên của các hành tinh"],
+                correct: 0,
+                explanation: "Quy chuẩn kiểm định sinh học nghiêm ngặt để tránh mang mầm bệnh chéo giữa các thiên thể."
+            },
+            {
+                question: "17. Tại sao bề mặt Sao Thủy ☿️ lại có biên độ nhiệt thay đổi cực kỳ khủng khiếp giữa ngày và đêm?",
+                options: ["A. Do nó quay quá nhanh xung quanh tâm", "B. Do không có lớp khí quyển dày để giữ nhiệt", "C. Do bề mặt cấu tạo toàn bằng than chì", "D. Do nằm quá gần các tiểu hành tinh"],
+                correct: 1,
+                explanation: "Vì không có tầng khí quyển giữ nhiệt, mặt ban ngày của Sao Thủy rất nóng còn ban đêm đóng băng sâu."
+            },
+            {
+                question: "18. Hệ thống động cơ đẩy nào được kỳ vọng sẽ rút ngắn thời gian đi đến các hành tinh ngoài từ nhiều năm xuống còn vài tuần?",
+                options: ["A. Động cơ hơi nước áp suất cao", "B. Động cơ đẩy nhiệt và ion hạt nhân", "C. Động cơ cánh quạt từ trường", "D. Động cơ buồm gió mặt trời cỡ lớn"],
+                correct: 1,
+                explanation: "Động cơ hạt nhân cung cấp năng lượng cực lớn giúp tăng tốc độ di chuyển vượt trội trong không gian sâu."
+            },
+            {
+                question: "19. Tàu thám hiểm nào nổi tiếng với sứ mệnh bay lượn qua các khe hở vành đai băng giá của Sao Thổ 🪐?",
+                options: ["A. Cassini", "B. Sputnik", "C. Hubble", "D. James Webb"],
+                correct: 0,
+                explanation: "Tàu Cassini đã hoàn thành xuất sắc các quỹ đạo hiểm hóc quanh hệ thống vành đai Sao Thổ 🪐."
+            },
+            {
+                question: "20. Mục đích chính của việc phóng các sứ mệnh nghiên cứu Tiểu hành tinh cận Trái Đất (NEO) là gì?",
+                options: ["A. Khai thác vàng bạc đem về làm giàu", "B. Tính toán quỹ đạo và thử nghiệm phương án phòng thủ va chạm", "C. Đưa tiểu hành tinh về làm vệ tinh thứ hai cho Trái Đất", "D. Biến tiểu hành tinh thành trạm tiếp nhiên liệu"],
+                correct: 1,
+                explanation: "Giúp nhân loại phát hiện sớm và có giải pháp làm chệch hướng các vật thể nguy hiểm có nguy cơ va chạm Trái Đất 🌍."
             }
         ];
 
@@ -514,7 +599,7 @@
 
             if (selectedIndex === currentQ.correct) {
                 btnElement.classList.add('correct');
-                score += 20;
+                score += 5; // 20 câu tổng 100 điểm
             } else {
                 btnElement.classList.add('wrong');
                 allBtns[currentQ.correct].classList.add('correct');
@@ -535,7 +620,7 @@
             } else {
                 document.getElementById('quizScreen').style.display = 'none';
                 document.getElementById('resultScreen').style.display = 'block';
-                document.getElementById('finalScoreText').innerText = `Bạn đã hoàn thành xuất sắc các thử thách với tổng điểm: ${score} / 100 điểm!`;
+                document.getElementById('finalScoreText').innerText = `Bạn đã hoàn thành xuất sắc chuỗi 20 câu hỏi thử thách không gian với tổng điểm: ${score} / 100 điểm!`;
             }
         }
 
@@ -606,6 +691,7 @@
             body.setAttribute('data-theme', currentTheme === 'dark' ? 'light' : 'dark');
         }
 
+        // Khởi động hệ thống trò chơi 20 câu
         loadQuestion();
     </script>
 </body>
