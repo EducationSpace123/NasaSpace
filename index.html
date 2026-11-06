@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NASA - Cổng Không Gian & Trò Chơi Trắc Nghiệm Đầy Đủ</title>
+    <title>NASA - Cổng Không Gian & Trò Chơi Trắc Nghiệm</title>
     <style>
         :root {
-            --bg-color: #0b0d19;
+            --bg-color: #050714;
             --text-color: #f0f4f8;
-            --card-bg: rgba(11, 61, 145, 0.2);
-            --card-border: rgba(11, 61, 145, 0.4);
+            --card-bg: rgba(11, 61, 145, 0.25);
+            --card-border: rgba(30, 144, 255, 0.3);
             --nasa-blue: #0b3d91;
             --nasa-red: #fc3d21;
-            --accent-glow: rgba(11, 61, 145, 0.6);
+            --accent-glow: rgba(30, 144, 255, 0.4);
             --option-bg: rgba(11, 61, 145, 0.15);
         }
 
@@ -40,6 +40,8 @@
             color: var(--text-color);
             padding: 20px;
             overflow-x: hidden;
+            background-image: radial-gradient(circle at 50% 20%, #101b3b 0%, var(--bg-color) 70%);
+            min-height: 100vh;
         }
 
         header {
@@ -47,35 +49,73 @@
             justify-content: space-between;
             align-items: center;
             max-width: 1200px;
-            margin: 0 auto 20px auto;
-            padding: 15px 20px;
-            border-bottom: 3px solid var(--nasa-blue);
+            margin: 0 auto 25px auto;
+            padding: 15px 25px;
+            border-bottom: 2px solid rgba(30, 144, 255, 0.2);
             flex-wrap: wrap;
             gap: 15px;
+            background: var(--card-bg);
+            border-radius: 16px;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
 
         .logo-area {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 16px;
         }
 
+        /* LOGO NASA ĐẸP, HIỆN ĐẠI & SẮC NÉT HƠN */
         .nasa-badge {
-            background: var(--nasa-blue);
+            position: relative;
+            background: linear-gradient(135deg, #0b3d91, #1d4ed8);
             color: white;
-            padding: 10px 18px;
+            padding: 10px 20px;
             font-weight: 900;
-            border-radius: 6px;
-            letter-spacing: 2px;
-            border: 2px solid var(--nasa-red);
-            box-shadow: 0 0 10px var(--accent-glow);
+            font-size: 1.3rem;
+            border-radius: 8px;
+            letter-spacing: 3px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 0 0 15px rgba(11, 61, 145, 0.7), inset 0 0 10px rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            overflow: hidden;
+        }
+
+        /* Hiệu ứng tia sáng chạy qua logo */
+        .nasa-badge::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(60deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+            transform: rotate(30deg) translateX(-100%);
+            animation: shine 4s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: rotate(30deg) translateX(-100%); }
+            20% { transform: rotate(30deg) translateX(100%); }
+            100% { transform: rotate(30deg) translateX(100%); }
+        }
+
+        .nasa-subtext {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.8;
+            font-weight: 600;
         }
 
         .btn {
             background: var(--card-bg);
             color: var(--text-color);
-            border: 1px solid var(--nasa-blue);
-            padding: 10px 16px;
+            border: 1px solid var(--card-border);
+            padding: 10px 18px;
             border-radius: 8px;
             cursor: pointer;
             font-weight: 600;
@@ -85,6 +125,7 @@
         .btn:hover {
             background: var(--nasa-blue);
             color: white;
+            border-color: var(--nasa-red);
             transform: translateY(-2px);
         }
 
@@ -93,7 +134,6 @@
             margin: 0 auto;
         }
 
-        /* Nút lựa chọn chế độ lớn (Trò chơi 20 câu / Khám phá hành tinh) */
         .mode-selector {
             display: flex;
             justify-content: center;
@@ -104,20 +144,21 @@
 
         .mode-btn {
             background: var(--card-bg);
-            border: 2px solid var(--nasa-blue);
+            border: 2px solid var(--card-border);
             color: var(--text-color);
             padding: 12px 25px;
             border-radius: 30px;
             cursor: pointer;
             font-weight: bold;
             font-size: 1rem;
+            backdrop-filter: blur(10px);
         }
 
         .mode-btn.active, .mode-btn:hover {
             background: var(--nasa-red);
             border-color: var(--nasa-red);
             color: white;
-            box-shadow: 0 0 15px var(--nasa-red);
+            box-shadow: 0 0 15px rgba(252, 61, 33, 0.6);
         }
 
         /* PHẦN TRÒ CHƠI 20 CÂU */
@@ -132,8 +173,8 @@
             border: 1px solid var(--card-border);
             border-radius: 16px;
             padding: 30px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 8px 25px var(--accent-glow);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.4);
         }
 
         .game-header {
@@ -160,10 +201,10 @@
 
         .option-btn {
             background: var(--option-bg);
-            border: 1px solid var(--nasa-blue);
+            border: 1px solid var(--card-border);
             color: var(--text-color);
             padding: 14px 18px;
-            border-radius: 8px;
+            border-radius: 10px;
             cursor: pointer;
             text-align: left;
             font-size: 0.98rem;
@@ -181,10 +222,10 @@
 
         .explanation-box {
             display: none;
-            background: rgba(11, 61, 145, 0.1);
+            background: rgba(11, 61, 145, 0.15);
             border-left: 4px solid var(--nasa-red);
             padding: 15px;
-            border-radius: 6px;
+            border-radius: 8px;
             margin-bottom: 20px;
             font-size: 0.92rem;
             line-height: 1.5;
@@ -196,11 +237,16 @@
             color: white;
             border: none;
             padding: 12px;
-            border-radius: 8px;
+            border-radius: 10px;
             cursor: pointer;
             font-weight: bold;
             width: 100%;
             font-size: 1rem;
+            box-shadow: 0 0 10px rgba(252, 61, 33, 0.4);
+        }
+
+        .next-btn:hover {
+            opacity: 0.9;
         }
 
         .result-screen {
@@ -208,7 +254,7 @@
             display: none;
         }
 
-        /* PHẦN KHÁM PHÁ HÀNH TINH ĐƠN LẬP */
+        /* PHẦN KHÁM PHÁ HÀNH TINH */
         .explore-section {
             display: none;
         }
@@ -222,16 +268,17 @@
             flex-wrap: wrap;
             background: var(--card-bg);
             padding: 15px;
-            border-radius: 14px;
+            border-radius: 16px;
             border: 1px solid var(--card-border);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
         }
 
         .nav-tab {
             background: var(--bg-color);
-            border: 1px solid var(--nasa-blue);
+            border: 1px solid var(--card-border);
             color: var(--text-color);
-            padding: 8px 14px;
+            padding: 8px 16px;
             border-radius: 20px;
             cursor: pointer;
             font-size: 0.9rem;
@@ -242,7 +289,7 @@
             background: var(--nasa-red);
             border-color: var(--nasa-red);
             color: white;
-            box-shadow: 0 0 12px var(--nasa-red);
+            box-shadow: 0 0 12px rgba(252, 61, 33, 0.6);
         }
 
         .planet-page {
@@ -257,17 +304,17 @@
 
         .planet-header-card {
             background: var(--card-bg);
-            border: 2px solid var(--nasa-blue);
+            border: 2px solid var(--card-border);
             border-radius: 16px;
-            padding: 30px;
+            padding: 35px;
             text-align: center;
             margin-bottom: 25px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 8px 25px var(--accent-glow);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.4);
         }
 
         .planet-header-card h2 {
-            font-size: 2.2rem;
+            font-size: 2.3rem;
             color: var(--nasa-red);
             margin-bottom: 10px;
         }
@@ -292,7 +339,6 @@
             margin: 0 auto 20px auto;
         }
 
-        /* Nút Like / Dislike */
         .feedback-container {
             display: flex;
             justify-content: center;
@@ -305,7 +351,7 @@
 
         .feedback-btn {
             background: var(--bg-color);
-            border: 1px solid var(--nasa-blue);
+            border: 1px solid var(--card-border);
             color: var(--text-color);
             padding: 8px 16px;
             border-radius: 20px;
@@ -333,9 +379,15 @@
 <body data-theme="dark">
 
     <header>
+        <!-- LOGO NASA ĐƯỢC THIẾT KẾ LẠI SANG TRỌNG VÀ HIỆN ĐẠI -->
         <div class="logo-area">
-            <div class="nasa-badge">NASA</div>
-            <h1>Cổng Không Gian Đầy Đủ & Trò Chơi Trắc Nghiệm</h1>
+            <div class="nasa-badge">
+                <span>NASA</span>
+            </div>
+            <div>
+                <div style="font-weight: 700; font-size: 1rem; letter-spacing: 0.5px;">Hệ Thống Không Gian</div>
+                <div class="nasa-subtext">Space Exploration Portal</div>
+            </div>
         </div>
         <div>
             <button class="btn" onclick="toggleTheme()">☀️ / 🌙 Giao Diện</button>
@@ -380,7 +432,6 @@
     </div>
 
     <script>
-        // Dữ liệu chi tiết hành tinh độc lập
         const celestialData = [
             {
                 id: "sun",
@@ -454,7 +505,6 @@
             }
         ];
 
-        // 20 câu hỏi trắc nghiệm chuyên sâu
         const quizData = [
             {
                 question: "1. Tính đến nay, thiên thể ngoài Trái Đất nào là nơi duy nhất con người từng trực tiếp đặt chân tới?",
@@ -582,7 +632,6 @@
         let score = 0;
         let answered = false;
 
-        // Chuyển đổi qua lại giữa chế độ Chơi Trắc Nghiệm và Khám Phá Hành Tinh
         function switchMainMode(mode) {
             const btnGame = document.getElementById('btnGameMode');
             const btnExplore = document.getElementById('btnExploreMode');
@@ -602,7 +651,6 @@
             }
         }
 
-        // Logic Trò Chơi Trắc Nghiệm 20 Câu
         function loadQuestion() {
             answered = false;
             const currentQ = quizData[currentQuestionIndex];
@@ -668,7 +716,6 @@
             loadQuestion();
         }
 
-        // Khởi tạo phần Khám Phá Từng Hành Tinh
         function initExploreApp() {
             const navContainer = document.getElementById('planetNav');
             const pagesContainer = document.getElementById('pagesContainer');
@@ -690,7 +737,6 @@
                         <div class="status-badge ${item.status}">${item.statusText}</div>
                         <p class="planet-desc">${item.desc}</p>
                         
-                        <!-- Nút Like / Dislike -->
                         <div class="feedback-container">
                             <button class="feedback-btn" onclick="handleFeedback('${item.id}', 'like')">👍 Thích (<span id="like-count-${item.id}">15</span>)</button>
                             <button class="feedback-btn" onclick="handleFeedback('${item.id}', 'dislike')">👎 Không thích (<span id="dislike-count-${item.id}">0</span>)</button>
@@ -728,7 +774,6 @@
             body.setAttribute('data-theme', currentTheme === 'dark' ? 'light' : 'dark');
         }
 
-        // Chạy khởi động hệ thống
         loadQuestion();
         initExploreApp();
     </script>
