@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NASA - Cổng Thông Tin & Khám Phá Từng Hành Tinh</title>
+    <title>NASA - Cổng Không Gian & Trò Chơi Trắc Nghiệm Toàn Diện</title>
     <style>
         :root {
             --bg-color: #050714;
@@ -110,7 +110,6 @@
             margin: 0 auto;
         }
 
-        /* Nút chọn chế độ lớn */
         .mode-selector {
             display: flex;
             justify-content: center;
@@ -309,10 +308,11 @@
 
         .planet-desc {
             font-size: 1.05rem;
-            line-height: 1.6;
-            opacity: 0.9;
-            max-width: 800px;
+            line-height: 1.8;
+            opacity: 0.95;
+            max-width: 900px;
             margin: 0 auto 20px auto;
+            text-align: justify;
         }
 
         .feedback-container {
@@ -368,7 +368,6 @@
     </header>
 
     <div class="main-container">
-        <!-- Nút chọn chế độ lớn -->
         <div class="mode-selector">
             <button class="mode-btn active" id="btnGameMode" onclick="switchMainMode('game')">🎮 Trò Chơi Trắc Nghiệm (20 Câu)</button>
             <button class="mode-btn" id="btnExploreMode" onclick="switchMainMode('explore')">🪐 Khám Phá Từng Hành Tinh</button>
@@ -397,7 +396,7 @@
             </div>
         </div>
 
-        <!-- 2. PHẦN KHÁM PHÁ HÀNH TINH CHI TIẾT TỪNG TRANG -->
+        <!-- 2. PHẦN KHÁM PHÁ TỪNG HÀNH TINH CHI TIẾT 10 DÒNG -->
         <div class="explore-section" id="exploreSection">
             <div class="planet-nav" id="planetNav"></div>
             <div id="pagesContainer"></div>
@@ -405,7 +404,7 @@
     </div>
 
     <script>
-        // Dữ liệu chi tiết từng hành tinh/thiên thể được ghi rõ ràng rành mạch
+        // Dữ liệu chi tiết hành tinh viết dài mạch lạc khoảng 10 dòng
         const celestialData = [
             {
                 id: "sun",
@@ -413,7 +412,7 @@
                 icon: "☀️",
                 status: "status-none",
                 statusText: "🔴 Chưa từng có con người đặt chân (Chỉ có tàu không người lái bay xuyên vành nhật hoa)",
-                desc: "Mặt Trời là ngôi sao trung tâm của Hệ Mặt Trời, chứa 99.8% khối lượng toàn hệ thống. Thách thức cốt lõi: Chịu đựng bức xạ cực đoan và nhiệt độ bề mặt hàng triệu độ C. Tàu Parker Solar Probe của NASA phải tiếp cận trực tiếp vùng vành nhật hoa để giải mã nguồn gốc gió mặt trời."
+                desc: "Mặt Trời là ngôi sao trung tâm, chiếm giữ tới 99.8% tổng khối lượng toàn bộ Hệ Mặt Trời và là nguồn cung cấp năng lượng, ánh sáng duy trì sự sống cho Trái Đất. Thách thức lớn nhất đối với các nhà khoa học khi nghiên cứu thiên thể này là đối mặt với bức xạ nhiệt khổng lồ và từ trường cực đoan lên tới hàng triệu độ C. Để giải mã bí ẩn về gió mặt trời và bão từ tác động đến lưới điện toàn cầu, NASA đã phải chế tạo và phóng tàu Parker Solar Probe dũng cảm bay thẳng qua vùng vành nhật hoa. Mặc dù nhiệt độ xung quanh vô cùng khắc nghiệt, các lớp khiên gốm bảo vệ chuyên dụng giúp tàu thu thập dữ liệu quý giá mà không bị thiêu rụi. Đây được coi là một trong những bước tiến vĩ đại nhất lịch sử ngành chế tạo thiết bị hàng không vũ trụ hiện đại."
             },
             {
                 id: "mercury",
@@ -421,15 +420,15 @@
                 icon: "☿️",
                 status: "status-robot",
                 statusText: "🟡 Robot/Tàu tự hành khảo sát (Chưa có con người đặt chân)",
-                desc: "Sao Thủy là hành tinh nhỏ nhất và nằm gần Mặt Trời nhất. Thách thức cốt lõi: Biên độ nhiệt khủng khiếp chênh lệch từ -180°C lên tới 430°C giữa ngày và đêm do hành tinh này hoàn toàn thiếu lớp khí quyển dày để giữ nhiệt và phân phối nhiệt lượng."
+                desc: "Sao Thủy là hành tinh nhỏ nhất trong hệ mặt trời đồng thời sở hữu vị trí nằm gần Mặt Trời nhất với quỹ đạo chuyển động vô cùng độc đáo. Thách thức cốt lõi khi thám hiểm nơi đây chính là biên độ nhiệt bề mặt thay đổi cực kỳ khốc liệt, dao động từ mức âm 180 độ C lên tới tận 430 độ C chỉ trong một vòng quay. Nguyên nhân chính dẫn đến hiện tượng này là do hành tinh hoàn toàn thiếu vắng một lớp khí quyển dày để giữ nhiệt và phân phối đều năng lượng. Các sứ mệnh như Messenger và BepiColombo đã phải sử dụng vật liệu phản xạ nhiệt tiên tiến để chụp ảnh và lập bản đồ bề mặt chi tiết chứa đầy các hố va chạm. Việc nghiên cứu Sao Thủy giúp nhân loại hiểu rõ hơn về quá trình hình thành của các hành tinh dạng đá nằm ở vùng lõi bên trong hệ thống."
             },
             {
                 id: "venus",
                 name: "Sao Kim",
                 icon: "♀️",
                 status: "status-none",
-                statusText: "🔴 Chưa từng có con người đặt chân (Áp suất khổng lồ & mưa axit hủy diệt)",
-                desc: "Sao Kim có kích thước tương đồng Trái Đất nhưng sở hữu môi trường địa ngục. Thách thức cốt lõi: Áp suất khí quyển gấp 92 lần Trái Đất cùng nhiệt độ bề mặt lên tới 465°C làm tan chảy cả chì, đi kèm những đám mây chứa axit sulfuric đặc quánh."
+                statusText: "🔴 Chưa từng có con người đặt chân (Áp suất khổng lồ & axit hủy diệt robot)",
+                desc: "Sao Kim dù có kích thước và cấu tạo tương đồng với Trái Đất nhưng lại sở hữu một môi trường địa ngục thực sự đáng sợ đối với mọi thiết bị. Thách thức lớn nhất tại đây là áp suất khí quyển khổng lồ gấp 92 lần mặt nước biển kết hợp với nhiệt độ bề mặt lên tới 465 độ C đủ khả năng làm tan chảy chì. Bên cạnh đó, các tầng mây dày đặc bao phủ hành tinh này chủ yếu chứa axit sulfuric có tính ăn mòn cực mạnh phá hủy vật liệu cấu trúc nhanh chóng. Các tàu thăm dò thuộc chương trình Venera trong quá khứ chỉ có thể trụ vững và truyền về vài bức ảnh quý giá trong thời gian ngắn ngủi trước khi bị hỏng hoàn toàn. Hiện nay, các kỹ sư đang nghiên cứu các loại vi mạch chế tạo từ vật liệu Silicon-carbide đặc biệt để hy vọng chế tạo thiết bị sống sót lâu dài."
             },
             {
                 id: "earth",
@@ -437,7 +436,7 @@
                 icon: "🌍",
                 status: "status-human",
                 statusText: "🟢 Nơi con người sinh sống và làm chủ hoàn toàn",
-                desc: "Trái Đất là ngôi nhà chung duy nhất được biết đến có sự sống trong vũ trụ. Thách thức cốt lõi hiện nay: Quản lý rác thải quỹ đạo chuyển động tốc độ 28.000 km/h, duy trì hệ thống hỗ trợ sự sống khép kín, và phòng thủ hành tinh trước các tiểu hành tinh cận kề."
+                desc: "Trái Đất là hành tinh xanh tuyệt đẹp, đồng thời là ngôi nhà duy nhất trong vũ trụ được xác nhận có sự sống phong phú và văn minh nhân loại phát triển. Thách thức cốt lõi mà loài người đang phải đối mặt không chỉ nằm ngoài không gian mà còn ngay tại quỹ đạo cận vệ tinh xung quanh hành tinh này. Vấn đề rác thải quỹ đạo trôi nổi với vận tốc kinh hoàng lên tới 28.000 km/h đe dọa trực tiếp sự an toàn của hàng ngàn vệ tinh viễn thông đắt giá. Ngoài ra, việc duy trì hệ thống hỗ trợ sự sống khép kín đạt tỷ lệ tái chế 98% cùng các chiến lược phòng thủ trước tiểu hành tinh cận kề là ưu tiên tối quan trọng. Trái Đất đóng vai trò là điểm xuất phát duy nhất cho mọi ước mơ vươn ra biển lớn vũ trụ bao la của toàn bộ nhân loại trong tương lai."
             },
             {
                 id: "moon",
@@ -445,7 +444,7 @@
                 icon: "🌕",
                 status: "status-human",
                 statusText: "🟢 Đã có con người đặt chân (Chương trình Apollo lịch sử & Artemis)",
-                desc: "Mặt Trăng là vệ tinh tự nhiên duy nhất của Trái Đất. Thách thức cốt lõi: Xây dựng trạm trú ẩn dài hạn cho phi hành gia, xử lý lớp bụi Regolith sắc nhọn như mảnh thủy tinh bám dính thiết bị, và khai thác nguồn nước đá dưới các hố sâu vùng cực."
+                desc: "Mặt Trăng là vệ tinh tự nhiên duy nhất của Trái Đất, đánh dấu mốc son chói lọi khi phi hành gia Neil Armstrong đặt bước chân đầu tiên trong chương trình Apollo. Thách thức cốt lõi trong kỷ nguyên mới là xây dựng căn cứ trú ẩn dài hạn và đối phó với lớp bụi Regolith sắc nhọn như mảnh thủy tinh. Bụi này không bị gió bào mòn nên cực kỳ bám dính và phá hủy nhanh chóng các khớp nối trang thiết bị, đồng thời đe dọa hệ hô hấp con người. Chương trình Artemis của NASA hiện đang tập trung khai thác nguồn nước đá bị đóng băng ở các hố sâu vùng cực để tạo oxy và nhiên liệu. Mặt Trăng đang được quy hoạch trở thành trạm trung chuyển hoàn hảo để chuẩn bị cho các chuyến bay dài ngày đưa con người tiến sâu hơn tới Sao Hỏa."
             },
             {
                 id: "mars",
@@ -453,7 +452,7 @@
                 icon: "🔴",
                 status: "status-robot",
                 statusText: "🟡 Robot tự hành hoạt động liên tục (Chưa có con người đặt chân)",
-                desc: "Sao Hỏa (Hành tinh Đỏ) là mục tiêu hàng đầu cho sứ mệnh có người lái của NASA. Thách thức cốt lõi: Chống chọi bức xạ vũ trụ mạnh mẽ, bão bụi toàn cầu bao phủ, và ứng dụng công nghệ ISRU tự động chuyển hóa băng ngầm thành nước sạch và nhiên liệu tên lửa."
+                desc: "Sao Hỏa hay còn gọi là Hành tinh Đỏ, là điểm đến tiềm năng nhất cho sứ mệnh thám hiểm có phi hành gia trong thế kỷ này. Thách thức lớn nhất tại đây bao gồm bầu không khí loãng chứa chủ yếu khí CO2, lượng bức xạ vũ trụ nguy hiểm và những cơn bão bụi quy mô toàn hành tinh. Để giải quyết bài toán sinh tồn, NASA đang thử nghiệm công nghệ ISRU nhằm tự động chuyển hóa băng ngầm thành nước sạch và hydro phục vụ nhiên liệu tên lửa. Các xe robot tự hành như Perseverance và Curiosity đang ngày đêm khoan cắt bề mặt để tìm kiếm dấu hiệu của vi khuẩn cổ đại. Việc chinh phục Sao Hỏa đòi hỏi sự hợp tác toàn cầu về công nghệ sinh học không gian và hệ thống năng lượng hạt nhân độc lập vô cùng phức tạp."
             },
             {
                 id: "jupiter",
@@ -461,7 +460,7 @@
                 icon: "🟠",
                 status: "status-none",
                 statusText: "🔴 Chưa từng có con người đặt chân (Bức xạ và từ trường cực mạnh)",
-                desc: "Sao Mộc là hành tinh khổng lồ khí lớn nhất trong Hệ Mặt Trời. Thách thức cốt lõi: Vượt qua lớp từ trường siêu khổng lồ tạo ra các vành đai bức xạ năng lượng cao có khả năng phá hủy vi mạch điện tử siêu nhanh của bất kỳ tàu thám hiểm nào tiến gần."
+                desc: "Sao Mộc là hành tinh khí khổng lồ lớn nhất trong Hệ Mặt Trời, nổi bật với Vết Đỏ Lớn là một cơn bão khổng lồ tồn tại hàng trăm năm. Thách thức cốt lõi khi thám hiểm khu vực này là lớp từ trường siêu mạnh tạo ra các vành đai bức xạ năng lượng cao có khả năng hủy diệt vi mạch điện tử. Tàu Juno khi tiếp cận quỹ đạo hành tinh này phải chịu đựng những đợt oanh tạc từ các hạt tích điện nguy hiểm bậc nhất hệ thống. Do không có bề mặt rắn để đặt chân, mọi hoạt động nghiên cứu đều phải thực hiện từ trên quỹ đạo hoặc thông qua các thiết bị chuyên dụng thả sâu vào bầu khí quyển. Sao Mộc đóng vai trò như một chiếc 'lá chắn trọng lực' tự nhiên giúp hút bớt các tiểu hành tinh nguy hiểm có quỹ đạo bay vào bên trong hệ mặt trời."
             },
             {
                 id: "saturn",
@@ -469,7 +468,7 @@
                 icon: "🪐",
                 status: "status-none",
                 statusText: "🔴 Chưa từng có con người đặt chân (Hệ thống vành đai băng phức tạp)",
-                desc: "Sao Thổ nổi tiếng với hệ thống vành đai rực rỡ cấu tạo từ các hạt băng và đá. Thách thức cốt lõi: Điều hướng quỹ đạo cực kỳ an toàn qua hàng tỷ hạt băng chuyển động với vận tốc siêu nhanh bao quanh các khe hở vành đai phức tạp."
+                desc: "Sao Thổ nổi tiếng thế giới nhờ hệ thống vành đai rực rỡ và lộng lẫy được cấu thành từ hàng tỷ mảnh băng và đá nhỏ li ti. Thách thức lớn nhất trong các sứ mệnh tiếp cận là điều hướng quỹ đạo an toàn qua các khe hở hẹp với vận tốc siêu cao mà không bị va chạm. Tàu không gian Cassini đã thực hiện thành công những quỹ đạo tự sát cực kỳ mạo hiểm khi lao qua giữa hành tinh và vành đai để thu thập dữ liệu chưa từng có. Những mặt trăng băng giá bao quanh Sao Thổ như Enceladus ẩn chứa các cột phun nước ngầm được xem là nơi tìm kiếm sự sống ngoài hành tinh đầy tiềm năng. Hành tinh này tiếp tục là một trong những kỳ quan thiên nhiên vĩ đại nhất mà thiên văn học hiện đại đang nỗ lực giải mã."
             },
             {
                 id: "uranus",
@@ -477,7 +476,7 @@
                 icon: "🔵",
                 status: "status-none",
                 statusText: "🔴 Chưa từng có con người đặt chân (Hành tinh băng giá quay nghiêng)",
-                desc: "Sao Thiên Vương là một 'gã khổng lồ băng' độc đáo với trục tự quay nằm ngang góc 98 độ. Thách thức cốt lõi: Khoảng cách quá xa khiến năng lượng mặt trời suy giảm nặng nề, buộc các tàu thăm dò phải sử dụng máy phát nhiệt điện đồng vị phóng xạ (RTG) độc lập."
+                desc: "Sao Thiên Vương là một gã khổng lồ băng độc đáo với đặc điểm trục tự quay nằm ngang một góc gần như vuông góc 98 độ so với mặt phẳng quỹ đạo. Thách thức cốt lõi khi thám hiểm nơi đây là khoảng cách quá xa xôi khiến cường độ ánh sáng Mặt Trời suy giảm nghiêm trọng, làm vô hiệu hóa hoàn toàn pin mặt trời. Do đó, các tàu thám hiểm bắt buộc phải mang theo máy phát nhiệt điện đồng vị phóng xạ (RTG) để duy trì hoạt động năng lượng điện độc lập trong nhiều năm. Cho đến nay, nhân loại mới chỉ ghi nhận một lần duy nhất tàu Voyager 2 lướt qua vào năm 1986 để gửi về những hình ảnh sơ khai đầu tiên. Giới khoa học hiện đang kêu gọi một sứ mệnh quỹ đạo chuyên biệt mới để khám phá cấu trúc lớp băng và các mặt trăng kỳ lạ của nó."
             },
             {
                 id: "neptune",
@@ -485,11 +484,10 @@
                 icon: "🌊",
                 status: "status-none",
                 statusText: "🔴 Chưa từng có con người đặt chân (Biên giới tối tăm xa nhất)",
-                desc: "Sao Hải Vương là hành tinh lớn vòng ngoài cùng với những cơn gió siêu thanh mạnh nhất hệ mặt trời. Thách thức cốt lõi: Độ trễ tín hiệu liên lạc mất hàng giờ đồng hồ chiều đi và cường độ tín hiệu cực kỳ yếu ở vùng biên giới xa xôi."
+                desc: "Sao Hải Vương là hành tinh khí khổng lồ nằm ở vùng biên giới ngoài cùng của Hệ Mặt Trời, nổi bật với màu xanh đại dương sâu thẳm. Thách thức lớn nhất khi nghiên cứu hành tinh này là khoảng cách địa lý quá khổng lồ khiến độ trễ tín hiệu liên lạc mất tới nhiều giờ đồng hồ. Cường độ tín hiệu thu về từ các thiết bị thăm dò vô cùng yếu ớt, đòi hỏi hệ thống anten thu phát cực kỳ tối tân trên Trái Đất hỗ trợ. Hành tinh này sở hữu những cơn gió siêu mạnh thổi nhanh nhất toàn hệ mặt trời cùng hệ thống bão ngầm hoạt động vô cùng bí ẩn. Voyager 2 cũng chính là sứ mệnh duy nhất từng tiếp cận vùng đất lạnh giá này vào cuối thập niên 80 trước khi bay ra không gian liên sao."
             }
         ];
 
-        // 20 câu hỏi trắc nghiệm chuyên sâu
         const quizData = [
             {
                 question: "1. Tính đến nay, thiên thể ngoài Trái Đất nào là nơi duy nhất con người từng trực tiếp đặt chân tới?",
@@ -726,7 +724,7 @@
                             <button class="feedback-btn" onclick="handleFeedback('${item.id}', 'like')">👍 Thích (<span id="like-count-${item.id}">15</span>)</button>
                             <button class="feedback-btn" onclick="handleFeedback('${item.id}', 'dislike')">👎 Không thích (<span id="dislike-count-${item.id}">0</span>)</button>
                         </div>
-                        <div class="feedback-msg" id="msg-${item.id}">Cảm ơn bạn đã đánh giá về trang ${item.name}!</div>
+                        <div class="feedback-msg" id="msg-${item.id}">Cảm ơn bạn đã đánh giá về ${item.name}!</div>
                     </div>
                 `;
                 pagesContainer.appendChild(page);
