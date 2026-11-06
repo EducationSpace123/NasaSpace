@@ -119,7 +119,7 @@
             box-shadow: 0 0 15px var(--nasa-red);
         }
 
-        /* GIAO DIỆN TRÒ CHƠI */
+        /* TRÒ CHƠI TRẮC NGHIỆM */
         .game-section {
             display: block;
         }
@@ -207,7 +207,7 @@
             display: none;
         }
 
-        /* GIAO DIỆN TRA CỨU */
+        /* PHẦN TRA CỨU THÔNG TIN */
         .explore-section {
             display: none;
         }
@@ -335,7 +335,7 @@
     <header>
         <div class="logo-area">
             <div class="nasa-badge">NASA</div>
-            <h1>Cổng Trò Chơi Trắc Nghiệm 20 Câu & Dữ Liệu Không Gian</h1>
+            <h1>Trò Chơi Trắc Nghiệm 20 Câu & Dữ Liệu Không Gian</h1>
         </div>
         <div>
             <button class="btn" onclick="toggleTheme()">☀️ / 🌙 Giao Diện</button>
@@ -343,13 +343,13 @@
     </header>
 
     <div class="main-container">
-        <!-- Nút lựa chọn tính năng chính -->
+        <!-- Chuyển đổi chế độ -->
         <div class="mode-selector">
-            <button class="mode-btn active" id="btnGameMode" onclick="switchMode('game')">🎮 Chơi Trò Chơi Trắc Nghiệm (20 Câu)</button>
+            <button class="mode-btn active" id="btnGameMode" onclick="switchMode('game')">🎮 Trò Chơi Trắc Nghiệm (20 Câu)</button>
             <button class="mode-btn" id="btnExploreMode" onclick="switchMode('explore')">📚 Tra Cứu Thách Thức NASA</button>
         </div>
 
-        <!-- 1. PHẦN TRÒ CHƠI 20 CÂU -->
+        <!-- 1. TRÒ CHƠI 20 CÂU -->
         <div class="game-section" id="gameSection">
             <div class="game-container">
                 <div id="quizScreen">
@@ -372,7 +372,7 @@
             </div>
         </div>
 
-        <!-- 2. PHẦN TRA CỨU THÔNG TIN -->
+        <!-- 2. TRA CỨU THÔNG TIN -->
         <div class="explore-section" id="exploreSection">
             <div class="solar-system">
                 <h3>Hệ Thống Lọc Thiên Thể Không Gian</h3>
@@ -428,7 +428,7 @@
                 explanation: "Mặt Trăng 🌕 là thiên thể duy nhất ngoài Trái Đất mà con người từng đặt chân tới trong chương trình Apollo."
             },
             {
-                question: "2. Hành tinh nào trong hệ mặt trời có áp suất khí quyển nghiền nặt kim loại và nhiệt độ bề mặt nóng chảy chì (465°C)?",
+                question: "2. Hành tinh nào trong hệ mặt trời có áp suất khí quyển nghiền nát kim loại và nhiệt độ bề mặt nóng chảy chì (465°C)?",
                 options: ["A. Sao Thủy ☿️", "B. Sao Kim ♀️", "C. Sao Mộc 🟠", "D. Sao Hỏa 🔴"],
                 correct: 1,
                 explanation: "Sao Kim ♀️ có nhiệt độ khắc nghiệt và áp suất khí quyển cực lớn, con người chưa từng đặt chân tới."
@@ -507,7 +507,7 @@
             },
             {
                 question: "15. Công nghệ In 3D ngoài hành tinh dự kiến sử dụng nguyên liệu chính nào có sẵn trên bề mặt Sao Hỏa 🔴?",
-                    options: ["A. Nhựa tổng hợp", "B. Đất đá bụi Regolith địa phương", "C. Cát thạch anh mịn", "D. Gỗ hóa thạch"],
+                options: ["A. Nhựa tổng hợp", "B. Đất đá bụi Regolith địa phương", "C. Cát thạch anh mịn", "D. Gỗ hóa thạch"],
                 correct: 1,
                 explanation: "Robot sẽ tận dụng bụi đất đá Regolith ngay tại chỗ để in ra các cấu trúc vòm nhà trú ẩn."
             },
@@ -599,7 +599,7 @@
 
             if (selectedIndex === currentQ.correct) {
                 btnElement.classList.add('correct');
-                score += 5; // 20 câu tổng 100 điểm
+                score += 5; 
             } else {
                 btnElement.classList.add('wrong');
                 allBtns[currentQ.correct].classList.add('correct');
