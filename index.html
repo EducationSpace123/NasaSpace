@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NASA - Thách Thức & Khám Phá Vũ Trụ</title>
+    <style>
+        :root {
+            --bg-color: #0b0d19;
+            --text-color: #ffffff;
+            --card-bg: rgba(11, 61, 145, 0.15);
+            --card-border: rgba(11, 61, 145, 0.4);
+            --nasa-blue: #0b3d91;
+            --nasa-red: #fc3d21;
+            --accent-glow: rgba(11, 61, 145, 0.6);
+        }
+
+        [data-theme="light"] {
+            --bg-color: #f4f7fc;
+            --text-color: #1a1a1a;
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --card-border: rgba(11, 61, 145, 0.2);
+            --nasa-blue: #0b3d91;
+            --nasa-red: #fc3d21;
+            --accent-glow: rgba(11, 61, 145, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+            padding: 20px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto 30px auto;
+            padding: 20px;
+            border-bottom: 2px solid var(--nasa-blue);
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .nasa-badge {
+            background: var(--nasa-blue);
+            color: white;
+            padding: 10px 18px;
+            font-weight: bold;
+            border-radius: 4px;
+            letter-spacing: 2px;
+            border: 1px solid var(--nasa-red);
+        }
+
+        /* Nút thông minh */
+        .controls {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            background: var(--card-bg);
+            color: var(--text-color);
+            border: 1px solid var(--nasa-blue);
+            padding: 10px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        .btn:hover {
+            background: var(--nasa-blue);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Hệ mặt trời tương tác */
+        .solar-system {
+            max-width: 1200px;
+            margin: 0 auto 40px auto;
+            text-align: center;
+        }
+
+        .solar-system h2 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .planet-container {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .planet-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--nasa-blue);
+            color: var(--text-color);
+            padding: 8px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .planet-btn:hover, .planet-btn.active {
+            background: var(--nasa-red);
+            border-color: var(--nasa-red);
+            color: white;
+        }
+
+        /* Danh sách 14 vấn đề */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2rem;
+            color: var(--nasa-blue);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            position: relative;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 15px var(--accent-glow);
+        }
+
+        .card:hover {
+            border-color: var(--nasa-red);
+            transform: translateY(-5px);
+        }
+
+        .card-number {
+            font-size: 0.85rem;
+            color: var(--nasa-red);
+            font-weight: bold;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            opacity: 0.85;
+            line-height: 1.4;
+        }
+
+        /* Modal hiển thị chi tiết thông minh */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: var(--bg-color);
+            border: 2px solid var(--nasa-blue);
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 0 25px var(--nasa-blue);
+        }
+
+        .modal-content h3 {
+            color: var(--nasa-red);
+            margin-bottom: 15px;
+        }
+
+        .close-btn {
+            margin-top: 20px;
+            background: var(--nasa-blue);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body data-theme="dark">
+
+    <header>
+        <div class="logo-area">
+            <div class="nasa-badge">NASA</div>
+            <h1>Thách Thức & Sứ Mệnh</h1>
+        </div>
+        <div class="controls">
+            <button class="btn" onclick="toggleTheme()">☀️ / 🌙 Đổi Giao Diện</button>
+            <button class="btn" onclick="filterAll('all')">Toàn Bộ Vấn Đề</button>
+        </div>
+    </header>
+
+    <!-- Hệ mặt trời tương tác -->
+    <div class="solar-system">
+        <h2>Hệ Mặt Trời & Khu Vực Tác Động</h2>
+        <div class="planet-container">
+            <button class="planet-btn" onclick="filterPlanet('Mặt Trời')">Mặt Trời</button>
+            <button class="planet-btn" onclick="filterPlanet('Sao Thuỷ')">Sao Thuỷ</button>
+            <button class="planet-btn" onclick="filterPlanet('Sao Kim')">Sao Kim</button>
+            <button class="planet-btn" onclick="filterPlanet('Trái Đất')">Trái Đất</button>
+            <button class="planet-btn" onclick="filterPlanet('Sao Hỏa')">Sao Hỏa</button>
+            <button class="planet-btn" onclick="filterPlanet('Sao Mộc')">Sao Mộc</button>
+            <button class="planet-btn" onclick="filterPlanet('Sao Thổ')">Sao Thổ</button>
+            <button class="planet-btn" onclick="filterPlanet('Sao Thiên Vương')">Sao Thiên Vương</button>
+            <button class="planet-btn" onclick="filterPlanet('Sao Hải Vương')">Sao Hải Vương</button>
+        </div>
+    </div>
+
+    <!-- Danh sách 14 vấn đề -->
+    <div class="container">
+        <h2 class="section-title">14 Vấn Đề Cốt Lõi NASA Đang Gặp Phải</h2>
+        <div class="grid" id="issuesGrid">
+            <!-- Được render tự động qua JavaScript -->
+        </div>
+    </div>
+
+    <!-- Modal Chi Tiết -->
+    <div class="modal" id="infoModal">
+        <div class="modal-content">
+            <h3 id="modalTitle">Tiêu đề vấn đề</h3>
+            <p id="modalDesc">Nội dung chi tiết...</p>
+            <button class="close-btn" onclick="closeModal()">Đóng</button>
+        </div>
+    </div>
+
+    <script>
+        const issues = [
+            { id: 1, title: "Bức xạ vũ trụ sâu", desc: "Bảo vệ phi hành gia khỏi bức xạ tia vũ trụ thiên hà và bão mặt trời trong sứ mệnh dài ngày.", planet: "Sao Hỏa" },
+            { id: 2, title: "Quản lý rác thải quỹ đạo", desc: "Xử lý hàng triệu mảnh vỡ không gian đe dọa trạm ISS và các vệ tinh hoạt động.", planet: "Trái Đất" },
+            { id: 3, title: "Hệ thống hỗ trợ sự sống khép kín", desc: "Tái chế 98% nước và không khí phục vụ định cư lâu dài trên hành tinh khác.", planet: "Sao Hỏa" },
+            { id: 4, title: "Năng lượng bề mặt ngoài Trái Đất", desc: "Thiết kế lò phản ứng hạt nhân nhỏ gọn hoặc pin mặt trời chịu được bão bụi khắc nghiệt.", planet: "Mặt Trời" },
+            { id: 5, title: "Hạ cánh chính xác trên Sao Hỏa", desc: "Giải quyết bài toán '7 phút kinh hoàng' khi đưa tải trọng nặng hạ cánh an toàn.", planet: "Sao Hỏa" },
+            { id: 6, title: "Nhiệt độ khắc nghiệt Sao Kim", desc: "Chế tạo thiết bị cơ điện tử sống sót dưới áp suất và nhiệt độ tan chảy chì.", planet: "Sao Kim" },
+            { id: 7, title: "Động cơ đẩy thế hệ mới", desc: "Phát triển công nghệ đẩy nhiệt hạt nhân hoặc điện ion để rút ngắn thời gian du hành.", planet: "Sao Mộc" },
+            { id: 8, title: "Chi phí ngân sách và áp lực", desc: "Tối ưu hóa nguồn vốn hạn hẹp giữa các mục tiêu khoa học và thương mại hóa.", planet: "Trái Đất" },
+            { id: 9, title: "Bảo mật mạng lưới truyền thông vũ trụ", desc: "Chống lại sự suy giảm tín hiệu và tấn công mạng liên hành tinh khoảng cách xa.", planet: "Sao Hải Vương" },
+            { id: 10, title: "Khoáng vật và tài nguyên tại chỗ (ISRU)", desc: "Khai thác băng nước và vật liệu tại chỗ để tạo nhiên liệu tên lửa trực tiếp.", planet: "Sao Thổ" },
+            { id: 11, title: "Ảnh hưởng vi trọng lực lên cơ thể", desc: "Ngăn chặn tình trạng mất xương, teo cơ và rối loạn thị giác của phi hành gia.", planet: "Trái Đất" },
+            { id: 12, title: "Bảo vệ hành tinh (Planetary Protection)", desc: "Tránh mang vi khuẩn từ Trái Đất làm ô nhiễm các thiên thể khác và ngược lại.", planet: "Sao Thuỷ" },
+            { id: 13, title: "Khảo sát và phòng thủ tiểu hành tinh", desc: "Theo dõi, tính toán quỹ đạo và thử nghiệm chuyển hướng các vật thể cận Trái Đất.", planet: "Sao Thiên Vương" },
+            { id: 14, title: "Sử dụng vật liệu in 3D không gian", desc: "Chế tạo công cụ và cấu trúc trú ẩn trực tiếp ngoài vũ trụ từ vật liệu địa phương.", planet: "Sao Hỏa" }
+        ];
+
+        function renderIssues(data) {
+            const grid = document.getElementById('issuesGrid');
+            grid.innerHTML = '';
+            data.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div class="card-number">Vấn đề #${item.id} • ${item.planet}</div>
+                    <h3>${item.title}</h3>
+                    <p>${item.desc}</p>
+                `;
+                card.onclick = () => openModal(item);
+                grid.appendChild(card);
+            });
+        }
+
+        function toggleTheme() {
+            const body = document.body;
+            const currentTheme = body.getAttribute('data-theme');
+            body.setAttribute('data-theme', currentTheme === 'dark' ? 'light' : 'dark');
+        }
+
+        function filterPlanet(planetName) {
+            document.querySelectorAll('.planet-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            const filtered = issues.filter(i => i.planet === planetName);
+            renderIssues(filtered);
+        }
+
+        function filterAll() {
+            document.querySelectorAll('.planet-btn').forEach(btn => btn.classList.remove('active'));
+            renderIssues(issues);
+        }
+
+        function openModal(item) {
+            document.getElementById('modalTitle').innerText = `Vấn đề #${item.id}: ${item.title}`;
+            document.getElementById('modalDesc').innerText = `${item.desc} (Khu vực liên quan trọng điểm: ${item.planet})`;
+            document.getElementById('infoModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('infoModal').style.display = 'none';
+        }
+
+        // Khởi chạy hiển thị ban đầu
+        renderIssues(issues);
+    </script>
+</body>
+</html>
