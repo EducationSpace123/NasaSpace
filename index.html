@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NASA - Thách Thức & Khám Phá Vũ Trụ</title>
+    <title>NASA - Thách Thức Khám Phá Không Gian & Hành Tinh</title>
     <style>
         :root {
             --bg-color: #0b0d19;
@@ -48,6 +48,8 @@
             margin: 0 auto 30px auto;
             padding: 20px;
             border-bottom: 2px solid var(--nasa-blue);
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
         .logo-area {
@@ -66,7 +68,6 @@
             border: 1px solid var(--nasa-red);
         }
 
-        /* Nút thông minh */
         .controls {
             display: flex;
             gap: 12px;
@@ -89,7 +90,6 @@
             transform: translateY(-2px);
         }
 
-        /* Hệ mặt trời tương tác */
         .solar-system {
             max-width: 1200px;
             margin: 0 auto 40px auto;
@@ -104,7 +104,7 @@
         .planet-container {
             display: flex;
             justify-content: center;
-            gap: 12px;
+            gap: 10px;
             flex-wrap: wrap;
         }
 
@@ -124,7 +124,6 @@
             color: white;
         }
 
-        /* Danh sách 14 vấn đề */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -178,7 +177,6 @@
             line-height: 1.4;
         }
 
-        /* Modal hiển thị chi tiết thông minh */
         .modal {
             display: none;
             position: fixed;
@@ -206,13 +204,14 @@
         }
 
         .close-btn {
-            margin-top: 20px;
+            main-top: 20px;
             background: var(--nasa-blue);
             color: white;
             border: none;
             padding: 8px 20px;
             border-radius: 5px;
             cursor: pointer;
+            margin-top: 15px;
         }
     </style>
 </head>
@@ -221,36 +220,34 @@
     <header>
         <div class="logo-area">
             <div class="nasa-badge">NASA</div>
-            <h1>Thách Thức & Sứ Mệnh</h1>
+            <h1>Thách Thức & Sứ Mệnh Không Gian</h1>
         </div>
         <div class="controls">
             <button class="btn" onclick="toggleTheme()">☀️ / 🌙 Đổi Giao Diện</button>
-            <button class="btn" onclick="filterAll('all')">Toàn Bộ Vấn Đề</button>
+            <button class="btn" onclick="filterAll()">Toàn Bộ Vấn Đề (14)</button>
         </div>
     </header>
 
-    <!-- Hệ mặt trời tương tác -->
+    <!-- Hệ mặt trời tương tác (Đầy đủ hành tinh chưa/đã đặt chân) -->
     <div class="solar-system">
-        <h2>Hệ Mặt Trời & Khu Vực Tác Động</h2>
+        <h2>Hệ Mặt Trời & Khu Vực Thách Thức</h2>
         <div class="planet-container">
             <button class="planet-btn" onclick="filterPlanet('Mặt Trời')">Mặt Trời</button>
-            <button class="planet-btn" onclick="filterPlanet('Sao Thuỷ')">Sao Thuỷ</button>
-            <button class="planet-btn" onclick="filterPlanet('Sao Kim')">Sao Kim</button>
+            <button class="planet-btn" onclick="filterPlanet('Sao Thủy')">Sao Thủy</button>
+            <button class="planet-btn" onclick="filterPlanet('Sao Kim')">Sao Kim 🚫</button>
             <button class="planet-btn" onclick="filterPlanet('Trái Đất')">Trái Đất</button>
             <button class="planet-btn" onclick="filterPlanet('Sao Hỏa')">Sao Hỏa</button>
-            <button class="planet-btn" onclick="filterPlanet('Sao Mộc')">Sao Mộc</button>
-            <button class="planet-btn" onclick="filterPlanet('Sao Thổ')">Sao Thổ</button>
-            <button class="planet-btn" onclick="filterPlanet('Sao Thiên Vương')">Sao Thiên Vương</button>
-            <button class="planet-btn" onclick="filterPlanet('Sao Hải Vương')">Sao Hải Vương</button>
+            <button class="planet-btn" onclick="filterPlanet('Sao Mộc')">Sao Mộc 🚫</button>
+            <button class="planet-btn" onclick="filterPlanet('Sao Thổ')">Sao Thổ 🚫</button>
+            <button class="planet-btn" onclick="filterPlanet('Sao Thiên Vương')">Sao Thiên Vương 🚫</button>
+            <button class="planet-btn" onclick="filterPlanet('Sao Hải Vương')">Sao Hải Vương 🚫</button>
         </div>
     </div>
 
     <!-- Danh sách 14 vấn đề -->
     <div class="container">
-        <h2 class="section-title">14 Vấn Đề Cốt Lõi NASA Đang Gặp Phải</h2>
-        <div class="grid" id="issuesGrid">
-            <!-- Được render tự động qua JavaScript -->
-        </div>
+        <h2 class="section-title">14 Thách Thức Công Nghệ & Sứ Mệnh Của NASA</h2>
+        <div class="grid" id="issuesGrid"></div>
     </div>
 
     <!-- Modal Chi Tiết -->
@@ -264,20 +261,90 @@
 
     <script>
         const issues = [
-            { id: 1, title: "Bức xạ vũ trụ sâu", desc: "Bảo vệ phi hành gia khỏi bức xạ tia vũ trụ thiên hà và bão mặt trời trong sứ mệnh dài ngày.", planet: "Sao Hỏa" },
-            { id: 2, title: "Quản lý rác thải quỹ đạo", desc: "Xử lý hàng triệu mảnh vỡ không gian đe dọa trạm ISS và các vệ tinh hoạt động.", planet: "Trái Đất" },
-            { id: 3, title: "Hệ thống hỗ trợ sự sống khép kín", desc: "Tái chế 98% nước và không khí phục vụ định cư lâu dài trên hành tinh khác.", planet: "Sao Hỏa" },
-            { id: 4, title: "Năng lượng bề mặt ngoài Trái Đất", desc: "Thiết kế lò phản ứng hạt nhân nhỏ gọn hoặc pin mặt trời chịu được bão bụi khắc nghiệt.", planet: "Mặt Trời" },
-            { id: 5, title: "Hạ cánh chính xác trên Sao Hỏa", desc: "Giải quyết bài toán '7 phút kinh hoàng' khi đưa tải trọng nặng hạ cánh an toàn.", planet: "Sao Hỏa" },
-            { id: 6, title: "Nhiệt độ khắc nghiệt Sao Kim", desc: "Chế tạo thiết bị cơ điện tử sống sót dưới áp suất và nhiệt độ tan chảy chì.", planet: "Sao Kim" },
-            { id: 7, title: "Động cơ đẩy thế hệ mới", desc: "Phát triển công nghệ đẩy nhiệt hạt nhân hoặc điện ion để rút ngắn thời gian du hành.", planet: "Sao Mộc" },
-            { id: 8, title: "Chi phí ngân sách và áp lực", desc: "Tối ưu hóa nguồn vốn hạn hẹp giữa các mục tiêu khoa học và thương mại hóa.", planet: "Trái Đất" },
-            { id: 9, title: "Bảo mật mạng lưới truyền thông vũ trụ", desc: "Chống lại sự suy giảm tín hiệu và tấn công mạng liên hành tinh khoảng cách xa.", planet: "Sao Hải Vương" },
-            { id: 10, title: "Khoáng vật và tài nguyên tại chỗ (ISRU)", desc: "Khai thác băng nước và vật liệu tại chỗ để tạo nhiên liệu tên lửa trực tiếp.", planet: "Sao Thổ" },
-            { id: 11, title: "Ảnh hưởng vi trọng lực lên cơ thể", desc: "Ngăn chặn tình trạng mất xương, teo cơ và rối loạn thị giác của phi hành gia.", planet: "Trái Đất" },
-            { id: 12, title: "Bảo vệ hành tinh (Planetary Protection)", desc: "Tránh mang vi khuẩn từ Trái Đất làm ô nhiễm các thiên thể khác và ngược lại.", planet: "Sao Thuỷ" },
-            { id: 13, title: "Khảo sát và phòng thủ tiểu hành tinh", desc: "Theo dõi, tính toán quỹ đạo và thử nghiệm chuyển hướng các vật thể cận Trái Đất.", planet: "Sao Thiên Vương" },
-            { id: 14, title: "Sử dụng vật liệu in 3D không gian", desc: "Chế tạo công cụ và cấu trúc trú ẩn trực tiếp ngoài vũ trụ từ vật liệu địa phương.", planet: "Sao Hỏa" }
+            { 
+                id: 1, 
+                title: "Khảo sát và chịu nhiệt vành nhật hoa", 
+                desc: "Đối mặt với bức xạ cực đoan và nhiệt độ hàng triệu độ C khi phóng tàu bay sát khí quyển Mặt Trời.", 
+                planet: "Mặt Trời" 
+            },
+            { 
+                id: 2, 
+                title: "Bảo vệ thiết bị trước biên độ nhiệt Sao Thủy", 
+                desc: "Vượt qua sự chênh lệch nhiệt độ khủng khiếp giữa mặt ban ngày (thiêu đốt) và ban đêm (đóng băng) của hành tinh gần nhất.", 
+                planet: "Sao Thủy" 
+            },
+            { 
+                id: 3, 
+                title: "Chế tạo thiết bị thám hiểm bề mặt Sao Kim", 
+                desc: "Nơi con người chưa từng đặt chân: Áp suất khí quyển nghiền nát kim loại và axit sulfuric ăn mòn mọi vật liệu thông thường chỉ trong vài phút.", 
+                planet: "Sao Kim" 
+            },
+            { 
+                id: 4, 
+                title: "Quản lý rác thải quỹ đạo và phòng thủ Trái Đất", 
+                desc: "Dọn dẹp hàng triệu mảnh vỡ trôi nổi quanh Trái Đất và ngăn chặn các tiểu hành tinh va chạm.", 
+                planet: "Trái Đất" 
+            },
+            { 
+                id: 5, 
+                title: "Sinh tồn và định cư lâu dài trên Sao Hỏa", 
+                desc: "Giải quyết bài toán bức xạ vũ trụ, bão bụi toàn cầu và tạo ra nước, dưỡng khí từ tài nguyên tại chỗ (ISRU).", 
+                planet: "Sao Hỏa" 
+            },
+            { 
+                id: 6, 
+                title: "Xuyên thủng bức xạ cực mạnh quanh Sao Mộc", 
+                desc: "Nơi chưa từng có con người đặt chân: Lớp từ trường khổng lồ và vành đai bức xạ của Sao Mộc phá hủy vi mạch điện tử siêu nhanh.", 
+                planet: "Sao Mộc" 
+            },
+            { 
+                id: 7, 
+                title: "Thám hiểm hệ thống vành đai phức tạp Sao Thổ", 
+                desc: "Nơi con người chưa tới: Điều hướng tàu thám hiểm qua hàng tỷ hạt băng chuyển động tốc độ cao quanh các vành đai của Sao Thổ.", 
+                planet: "Sao Thổ" 
+            },
+            { 
+                id: 8, 
+                title: "Thám hiểm hành tinh băng giá Sao Thiên Vương", 
+                desc: "Nơi con người chưa tới: Khoảng cách xa kinh khủng làm suy giảm năng lượng mặt trời, đòi hỏi nguồn điện hạt nhân độc lập hoàn toàn.", 
+                planet: "Sao Thiên Vương" 
+            },
+            { 
+                id: 9, 
+                title: "Truyền thông liên hành tinh tầm xa Sao Hải Vương", 
+                desc: "Nơi con người chưa tới: Độ trễ tín hiệu hàng giờ liền và không gian tối đen như mực tại biên giới ngoài cùng của Hệ Mặt Trời.", 
+                planet: "Sao Hải Vương" 
+            },
+            { 
+                id: 10, 
+                title: "Hệ thống hỗ trợ sự sống khép kín 98%", 
+                desc: "Tái chế toàn bộ nước tiểu, mồ hôi và không khí thành tài nguyên sạch phục vụ các chuyến bay dài ngày.", 
+                planet: "Trái Đất" 
+            },
+            { 
+                id: 11, 
+                title: "Động cơ đẩy nhiệt và ion hạt nhân", 
+                desc: "Rút ngắn thời gian du hành liên hành tinh từ hàng năm xuống còn vài tháng bằng công nghệ năng lượng mới.", 
+                planet: "Sao Mộc" 
+            },
+            { 
+                id: 12, 
+                title: "Tác động vi trọng lực lên cơ thể người", 
+                desc: "Ngăn chặn triệt để tình trạng mất xương, teo cơ và thoái hóa thần kinh thị giác của phi hành gia.", 
+                planet: "Trái Đất" 
+            },
+            { 
+                id: 13, 
+                title: "Công nghệ in 3D cấu trúc ngoài Trái Đất", 
+                desc: "Sử dụng chính đất đá tại chỗ (regolith) để tự động xây dựng nhà ở cho phi hành gia mà không cần chở vật liệu từ Trái Đất.", 
+                planet: "Sao Hỏa" 
+            },
+            { 
+                id: 14, 
+                title: "Bảo vệ hành tinh (Planetary Protection)", 
+                desc: "Ngăn chặn việc mang vi khuẩn từ Trái Đất làm ô nhiễm các thế giới khác và mang mầm bệnh lạ ngược về nhà.", 
+                planet: "Sao Thủy" 
+            }
         ];
 
         function renderIssues(data) {
@@ -287,7 +354,7 @@
                 const card = document.createElement('div');
                 card.className = 'card';
                 card.innerHTML = `
-                    <div class="card-number">Vấn đề #${item.id} • ${item.planet}</div>
+                    <div class="card-number">Thách thức #${item.id} • ${item.planet}</div>
                     <h3>${item.title}</h3>
                     <p>${item.desc}</p>
                 `;
@@ -315,8 +382,8 @@
         }
 
         function openModal(item) {
-            document.getElementById('modalTitle').innerText = `Vấn đề #${item.id}: ${item.title}`;
-            document.getElementById('modalDesc').innerText = `${item.desc} (Khu vực liên quan trọng điểm: ${item.planet})`;
+            document.getElementById('modalTitle').innerText = `Thách thức #${item.id}: ${item.title}`;
+            document.getElementById('modalDesc').innerText = `${item.desc} (Khu vực không gian trọng điểm: ${item.planet})`;
             document.getElementById('infoModal').style.display = 'flex';
         }
 
