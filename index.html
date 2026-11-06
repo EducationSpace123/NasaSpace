@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NASA Space Mission - Trò Chơi & Cổng Thông Tin Thách Thức Không Gian</title>
+    <title>NASA - Trò Chơi & Cổng Thông Tin Thách Thức Không Gian Toàn Diện</title>
     <style>
         :root {
             --bg-color: #0b0d19;
@@ -71,12 +71,6 @@
             box-shadow: 0 0 10px var(--accent-glow);
         }
 
-        .nav-controls {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
         .btn {
             background: var(--card-bg);
             color: var(--text-color);
@@ -99,7 +93,7 @@
             margin: 0 auto;
         }
 
-        /* Khu vực chuyển đổi chế độ xem (Chơi Game hay Tra cứu 14 Vấn Đề) */
+        /* Nút chuyển chế độ: Trò chơi hay Tra cứu */
         .mode-selector {
             display: flex;
             justify-content: center;
@@ -125,7 +119,7 @@
             box-shadow: 0 0 15px var(--nasa-red);
         }
 
-        /* PHẦN TRÒ CHƠI */
+        /* GIAO DIỆN TRÒ CHƠI */
         .game-section {
             display: block;
         }
@@ -213,7 +207,7 @@
             display: none;
         }
 
-        /* PHẦN TRA CỨU 14 VẤN ĐỀ & HỆ MẶT TRỜI */
+        /* GIAO DIỆN TRA CỨU THÔNG TIN 14 VẤN ĐỀ */
         .explore-section {
             display: none;
         }
@@ -341,29 +335,29 @@
     <header>
         <div class="logo-area">
             <div class="nasa-badge">NASA</div>
-            <h1>Khám Phá Sứ Mệnh & Trò Chơi Không Gian</h1>
+            <h1>Cổng Trò Chơi & Dữ Liệu Không Gian</h1>
         </div>
-        <div class="nav-controls">
+        <div>
             <button class="btn" onclick="toggleTheme()">☀️ / 🌙 Giao Diện</button>
         </div>
     </header>
 
     <div class="main-container">
-        <!-- Nút chuyển đổi giao diện tính năng -->
+        <!-- Nút lựa chọn tính năng chính -->
         <div class="mode-selector">
-            <button class="mode-btn active" id="btnGameMode" onclick="switchMode('game')">🎮 Chơi Trò Chơi Thử Thách</button>
+            <button class="mode-btn active" id="btnGameMode" onclick="switchMode('game')">🎮 Chơi Trò Chơi Trắc Nghiệm</button>
             <button class="mode-btn" id="btnExploreMode" onclick="switchMode('explore')">📚 Tra Cứu 14 Vấn Đề NASA</button>
         </div>
 
-        <!-- PHẦN 1: TRÒ CHƠI TRẮC NGHIỆM -->
+        <!-- 1. PHẦN TRÒ CHƠI -->
         <div class="game-section" id="gameSection">
             <div class="game-container">
                 <div id="quizScreen">
                     <div class="game-header">
-                        <span id="questionCounter">Câu hỏi 1/6</span>
+                        <span id="questionCounter">Câu hỏi 1/5</span>
                         <span id="scoreTracker">Điểm: 0</span>
                     </div>
-                    <div class="question-box" id="questionText">Đang tải...</div>
+                    <div class="question-box" id="questionText">Đang tải câu hỏi...</div>
                     <div class="options-grid" id="optionsContainer"></div>
                     
                     <div class="explanation-box" id="explanationBox"></div>
@@ -378,10 +372,10 @@
             </div>
         </div>
 
-        <!-- PHẦN 2: HỆ THỐNG TRA CỨU 14 VẤN ĐỀ & HỆ MẶT TRỜI -->
+        <!-- 2. PHẦN TRA CỨU 14 VẤN ĐỀ & HỆ MẶT TRỜI -->
         <div class="explore-section" id="exploreSection">
             <div class="solar-system">
-                <h3>Bộ Lọc Thiên Thể Hệ Mặt Trời</h3>
+                <h3>Bộ Lọc Hành Tinh Hệ Mặt Trời</h3>
                 <div class="planet-container">
                     <button class="planet-btn" onclick="filterPlanet('Mặt Trời')">Mặt Trời</button>
                     <button class="planet-btn" onclick="filterPlanet('Sao Thủy')">Sao Thủy</button>
@@ -400,7 +394,7 @@
         </div>
     </div>
 
-    <!-- Modal Chi Tiết Vấn Đề -->
+    <!-- Hộp thoại Modal chi tiết vấn đề -->
     <div class="modal" id="infoModal">
         <div class="modal-content">
             <h3 id="modalTitle">Tiêu đề</h3>
@@ -411,9 +405,9 @@
     </div>
 
     <script>
-        // Dữ liệu 14 vấn đề thực tế của NASA kết hợp thông tin con người đặt chân
+        // Danh sách 14 vấn đề khoa học thực tế của NASA
         const issues = [
-            { id: 1, title: "Khảo sát và chịu nhiệt vành nhật hoa", desc: "Tàu Parker Solar Probe đối mặt với bức xạ nhiệt hàng triệu độ C để thu thập dữ liệu gốc bão từ.", planet: "Mặt Trời", status: "status-none", exploration: "Chưa từng có con người đặt chân (Chỉ có tàu không người lái bay xuyên qua)" },
+            { id: 1, title: "Khảo sát khí quyển và chịu nhiệt vành nhật hoa", desc: "Tàu Parker Solar Probe đối mặt với bức xạ nhiệt hàng triệu độ C để thu thập dữ liệu nguồn gốc bão từ.", planet: "Mặt Trời", status: "status-none", exploration: "Chưa từng có con người đặt chân (Chỉ có tàu không người lái bay xuyên qua)" },
             { id: 2, title: "Bảo vệ vật liệu trước biên độ nhiệt Sao Thủy", desc: "Chênh lệch nhiệt độ bề mặt từ -180°C lên tới 430°C đòi hỏi lớp phủ gốm chịu nhiệt đặc biệt.", planet: "Sao Thủy", status: "status-robot", exploration: "Chưa từng có con người đặt chân (Đã có tàu Messenger và BepiColombo bay quỹ đạo)" },
             { id: 3, title: "Chế tạo thiết bị cơ điện tử sống sót trên Sao Kim", desc: "Áp suất gấp 92 lần Trái Đất và nhiệt độ 465°C làm tan chảy chì trong vài phút. Cần vi mạch silicon-carbide.", planet: "Sao Kim", status: "status-none", exploration: "Chưa từng có con người đặt chân (Tàu Venera từng chụp ảnh vài phút trước khi hỏng)" },
             { id: 4, title: "Quản lý rác thải quỹ đạo và phòng thủ Trái Đất", desc: "Theo dõi hàng triệu mảnh vỡ trôi nổi với vận tốc lớn và tính toán quỹ đạo tiểu hành tinh va chạm.", planet: "Trái Đất", status: "status-human", exploration: "Nơi duy nhất con người đang sinh sống và làm chủ hoàn toàn" },
@@ -429,13 +423,13 @@
             { id: 14, title: "Chính sách bảo vệ hành tinh và kiểm soát sinh học", desc: "Ngăn chặn việc mang vi khuẩn Trái Đất đi ô nhiễm thiên thể khác và ngược lại.", planet: "Sao Thủy", status: "status-none", exploration: "Quy chuẩn kiểm định bắt buộc cho toàn bộ các sứ mệnh" }
         ];
 
-        // Dữ liệu Trò chơi Trắc nghiệm
+        // Câu hỏi trắc nghiệm kiểm tra kiến thức
         const quizData = [
             {
                 question: "Hành tinh hoặc vùng không gian nào có môi trường khắc nghiệt làm thiết bị tan chảy chỉ trong vài phút và con người chưa từng đặt chân?",
                 options: ["A. Sao Hỏa", "B. Sao Kim (Áp suất cực đại & axit)", "C. Trái Đất", "D. Mặt Trăng"],
                 correct: 1,
-                explanation: "Sao Kim có nhiệt độ 465°C và áp suất cực lớn. Con người chưa từng đặt chân, tàu thăm dò chỉ trụ được vài phút."
+                explanation: "Sao Kim có nhiệt độ 465°C và áp suất cực lớn. Con người chưa từng đặt chân tới đây."
             },
             {
                 question: "Thách thức lớn nhất đối với phi hành gia sống lâu ngày trong môi trường vi trọng lực (không trọng lực) là gì?",
@@ -459,7 +453,7 @@
                 question: "Tính đến nay, con người đã trực tiếp đặt chân lên thiên thể ngoài Trái Đất nào?",
                 options: ["A. Chỉ có trên Mặt Trăng", "B. Cả Sao Hỏa và Sao Kim", "C. Toàn bộ các hành tinh", "D. Chưa từng đặt chân ở đâu"],
                 correct: 0,
-                explanation: "Mặt Trăng là thiên thể ngoài Trái Đất duy nhất con người từng đặt chân tới (chương trình Apollo)."
+                explanation: "Mặt Trăng là thiên thể ngoài Trái Đất duy nhất con người từng đặt chân tới (trong chương trình Apollo)."
             }
         ];
 
@@ -467,7 +461,7 @@
         let score = 0;
         let answered = false;
 
-        // Chuyển đổi qua lại giữa giao diện Chơi Game và Tra Cứu
+        // Chuyển chế độ giao diện
         function switchMode(mode) {
             const btnGame = document.getElementById('btnGameMode');
             const btnExplore = document.getElementById('btnExploreMode');
@@ -488,7 +482,7 @@
             }
         }
 
-        // Logic Trò Chơi
+        // Xử lý trò chơi trắc nghiệm
         function loadQuestion() {
             answered = false;
             const currentQ = quizData[currentQuestionIndex];
@@ -554,7 +548,7 @@
             loadQuestion();
         }
 
-        // Logic Hiển Thị 14 Vấn Đề & Bộ Lọc
+        // Render danh sách 14 vấn đề
         function renderIssues(data) {
             const grid = document.getElementById('issuesGrid');
             grid.innerHTML = '';
@@ -600,7 +594,7 @@
         function openModal(item) {
             document.getElementById('modalTitle').innerText = `Thách thức #${item.id}: ${item.title}`;
             document.getElementById('modalMeta').innerHTML = `<strong>Khu vực:</strong> ${item.planet} | <strong>Trạng thái:</strong> ${item.exploration}`;
-            document.getElementById('modalDesc').innerText = `${item.desc}\n\nĐây là bài toán thực tế thuộc hệ thống nghiên cứu không gian sâu của NASA, giúp người xem nắm bắt toàn diện về các giới hạn công nghệ hiện tại của nhân loại.`;
+            document.getElementById('modalDesc').innerText = `${item.desc}\n\nĐây là bài toán thực tế thuộc hệ thống nghiên cứu không gian sâu của NASA, giúp bạn nắm bắt toàn diện giới hạn công nghệ hiện tại của nhân loại.`;
             document.getElementById('infoModal').style.display = 'flex';
         }
 
@@ -614,7 +608,7 @@
             body.setAttribute('data-theme', currentTheme === 'dark' ? 'light' : 'dark');
         }
 
-        // Khởi chạy game ban đầu
+        // Khởi động trò chơi khi mở trang
         loadQuestion();
     </script>
 </body>
