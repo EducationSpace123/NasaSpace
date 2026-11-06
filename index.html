@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NASA - Trò Chơi & Cổng Thông Tin Thách Thức Không Gian Toàn Diện</title>
+    <title>NASA - Trò Chơi & Cổng Thông Tin Thách Thức Không Gian</title>
     <style>
         :root {
             --bg-color: #0b0d19;
@@ -93,7 +93,6 @@
             margin: 0 auto;
         }
 
-        /* Nút chuyển chế độ: Trò chơi hay Tra cứu */
         .mode-selector {
             display: flex;
             justify-content: center;
@@ -208,7 +207,7 @@
             display: none;
         }
 
-        /* GIAO DIỆN TRA CỨU THÔNG TIN */
+        /* GIAO DIỆN TRA CỨU */
         .explore-section {
             display: none;
         }
@@ -373,21 +372,21 @@
             </div>
         </div>
 
-        <!-- 2. PHẦN TRA CỨU THÔNG TIN & MẶT TRĂNG -->
+        <!-- 2. PHẦN TRA CỨU THÔNG TIN & EMOTE -->
         <div class="explore-section" id="exploreSection">
             <div class="solar-system">
-                <h3>Bộ Lọc Thiên Thể & Mặt Trăng</h3>
+                <h3>Hệ Thống Lọc Thiên Thể Không Gian</h3>
                 <div class="planet-container">
-                    <button class="planet-btn" onclick="filterPlanet('Mặt Trời')">Mặt Trời</button>
+                    <button class="planet-btn" onclick="filterPlanet('Mặt Trời')">☀️ Mặt Trời</button>
                     <button class="planet-btn" onclick="filterPlanet('Mặt Trăng')">🌕 Mặt Trăng</button>
-                    <button class="planet-btn" onclick="filterPlanet('Sao Thủy')">Sao Thủy</button>
-                    <button class="planet-btn" onclick="filterPlanet('Sao Kim')">Sao Kim</button>
-                    <button class="planet-btn" onclick="filterPlanet('Trái Đất')">Trái Đất</button>
-                    <button class="planet-btn" onclick="filterPlanet('Sao Hỏa')">Sao Hỏa</button>
-                    <button class="planet-btn" onclick="filterPlanet('Sao Mộc')">Sao Mộc</button>
-                    <button class="planet-btn" onclick="filterPlanet('Sao Thổ')">Sao Thổ</button>
-                    <button class="planet-btn" onclick="filterPlanet('Sao Thiên Vương')">Sao Thiên Vương</button>
-                    <button class="planet-btn" onclick="filterPlanet('Sao Hải Vương')">Sao Hải Vương</button>
+                    <button class="planet-btn" onclick="filterPlanet('Sao Thủy')">☿️ Sao Thủy</button>
+                    <button class="planet-btn" onclick="filterPlanet('Sao Kim')">♀️ Sao Kim</button>
+                    <button class="planet-btn" onclick="filterPlanet('Trái Đất')">🌍 Trái Đất</button>
+                    <button class="planet-btn" onclick="filterPlanet('Sao Hỏa')">🔴 Sao Hỏa</button>
+                    <button class="planet-btn" onclick="filterPlanet('Sao Mộc')">🟠 Sao Mộc</button>
+                    <button class="planet-btn" onclick="filterPlanet('Sao Thổ')">🪐 Sao Thổ</button>
+                    <button class="planet-btn" onclick="filterPlanet('Sao Thiên Vương')">🔵 Sao Thiên Vương</button>
+                    <button class="planet-btn" onclick="filterPlanet('Sao Hải Vương')">🌊 Sao Hải Vương</button>
                     <button class="btn" style="padding: 4px 10px; font-size: 0.8rem;" onclick="filterAll()">Tất Cả</button>
                 </div>
             </div>
@@ -407,37 +406,37 @@
     </div>
 
     <script>
-        // Danh sách các vấn đề thách thức (bao gồm Mặt Trăng)
+        // Danh sách 14 vấn đề khoa học thực tế kèm theo Emote biểu tượng cho từng hành tinh
         const issues = [
-            { id: 1, title: "Khảo sát khí quyển và chịu nhiệt vành nhật hoa", desc: "Tàu Parker Solar Probe đối mặt với bức xạ nhiệt hàng triệu độ C để thu thập dữ liệu nguồn gốc bão từ.", planet: "Mặt Trời", status: "status-none", exploration: "Chưa từng có con người đặt chân (Chỉ có tàu không người lái bay xuyên qua)" },
-            { id: 2, title: "Xây dựng trạm trú ẩn và khai thác băng cực Mặt Trăng (Chương trình Artemis)", desc: "Khắc phục bụi regolith sắc nhọn bám dính thiết bị và khai thác nước đá phục vụ căn cứ dài hạn.", planet: "Mặt Trăng", status: "status-human", exploration: "Đã có con người đặt chân (Chương trình Apollo lịch sử và sắp quay lại với Artemis)" },
-            { id: 3, title: "Bảo vệ vật liệu trước biên độ nhiệt Sao Thủy", desc: "Chênh lệch nhiệt độ bề mặt từ -180°C lên tới 430°C đòi hỏi lớp phủ gốm chịu nhiệt đặc biệt.", planet: "Sao Thủy", status: "status-robot", exploration: "Chưa từng có con người đặt chân (Đã có tàu Messenger và BepiColombo bay quỹ đạo)" },
-            { id: 4, title: "Chế tạo thiết bị cơ điện tử sống sót trên Sao Kim", desc: "Áp suất gấp 92 lần Trái Đất và nhiệt độ 465°C làm tan chảy chì trong vài phút. Cần vi mạch silicon-carbide.", planet: "Sao Kim", status: "status-none", exploration: "Chưa từng có con người đặt chân (Tàu Venera từng chụp ảnh vài phút trước khi hỏng)" },
-            { id: 5, title: "Quản lý rác thải quỹ đạo và phòng thủ Trái Đất", desc: "Theo dõi hàng triệu mảnh vỡ trôi nổi với vận tốc lớn và tính toán quỹ đạo tiểu hành tinh va chạm.", planet: "Trái Đất", status: "status-human", exploration: "Nơi duy nhất con người đang sinh sống và làm chủ hoàn toàn" },
-            { id: 6, title: "Sinh tồn và khai thác tài nguyên tại chỗ (ISRU) trên Sao Hỏa", desc: "Chuyển hóa băng ngầm thành nước sạch và nhiên liệu tên lửa để phi hành gia tự cung tự cấp.", planet: "Sao Hỏa", status: "status-robot", exploration: "Chưa có con người đặt chân (Mới chỉ có các xe robot tự hành hoạt động)" },
-            { id: 7, title: "Vượt qua vành đai bức xạ cực mạnh xung quanh Sao Mộc", desc: "Từ trường khổng lồ tạo ra các hạt năng lượng cao phá hủy nhanh chóng vi mạch điện tử.", planet: "Sao Mộc", status: "status-none", exploration: "Chưa từng có con người đặt chân (Khảo sát qua các tàu tự động quỹ đạo)" },
-            { id: 8, title: "Điều hướng quỹ đạo qua hệ thống vành đai hạt băng Sao Thổ", desc: "Tránh va chạm với hàng tỷ khối băng chuyển động siêu nhanh khi tàu lao qua khe hở hành tinh.", planet: "Sao Thổ", status: "status-none", exploration: "Chưa từng có con người đặt chân (Khảo sát hoàn toàn bằng tàu Cassini)" },
-            { id: 9, title: "Cung cấp năng lượng hạt nhân độc lập tại Sao Thiên Vương", desc: "Ở quá xa Mặt Trời khiến pin mặt trời vô tác dụng, đòi hỏi máy phát nhiệt điện phóng xạ (RTG).", planet: "Sao Thiên Vương", status: "status-none", exploration: "Chưa từng có con người đặt chân (Chỉ có tàu Voyager 2 lướt qua năm 1986)" },
-            { id: 10, title: "Giải mã thông tin tầm xa tại biên giới tối tăm Sao Hải Vương", desc: "Độ trễ tín hiệu lên tới hàng giờ chiều đi, cường độ tín hiệu thu về cực kỳ yếu ở vùng ngoài cùng.", planet: "Sao Hải Vương", status: "status-none", exploration: "Chưa từng có con người đặt chân (Chỉ có Voyager 2 lướt qua năm 1989)" },
-            { id: 11, title: "Hệ thống hỗ trợ sự sống khép kín 98%", desc: "Tái chế toàn bộ mồ hôi, nước tiểu và không khí thành nước uống và O2 tinh khiết phục vụ chuyến bay dài.", planet: "Trái Đất", status: "status-human", exploration: "Nơi duy nhất con người đang sinh sống và làm chủ hoàn toàn" },
-            { id: 12, title: "Phát triển động cơ đẩy nhiệt và ion hạt nhân", desc: "Giảm thời gian di chuyển liên hành tinh từ nhiều năm xuống còn vài tuần bằng năng lượng phản ứng.", planet: "Sao Mộc", status: "status-robot", exploration: "Chưa từng có con người đặt chân (Công nghệ đang nghiên cứu cho tàu tương lai)" },
-            { id: 13, title: "Khắc phục hội chứng mất xương do vi trọng lực", desc: "Phi hành gia mất 1-1.5% mật độ xương mỗi tháng, bắt buộc phải tập thể dục cường độ cao trong không gian.", planet: "Trái Đất", status: "status-human", exploration: "Nơi duy nhất con người đang sinh sống và làm chủ hoàn toàn" },
-            { id: 14, title: "In 3D cấu trúc trú ẩn từ bụi đá Regolith", desc: "Ứng dụng robot tự động nhặt đất đá tại chỗ để in ra các vòm nhà chống bức xạ ngoài không gian.", planet: "Sao Hỏa", status: "status-robot", exploration: "Chưa có con người đặt chân (Đang trong giai đoạn thử nghiệm tự động hóa)" }
+            { id: 1, title: "Khảo sát khí quyển và chịu nhiệt vành nhật hoa", desc: "Tàu Parker Solar Probe đối mặt với bức xạ nhiệt hàng triệu độ C để thu thập dữ liệu nguồn gốc bão từ.", planet: "Mặt Trời", emoji: "☀️", status: "status-none", exploration: "Chưa từng có con người đặt chân (Chỉ có tàu không người lái bay xuyên qua)" },
+            { id: 2, title: "Xây dựng trạm trú ẩn và khai thác băng cực Mặt Trăng (Artemis)", desc: "Khắc phục bụi regolith sắc nhọn bám dính thiết bị và khai thác nước đá phục vụ căn cứ dài hạn.", planet: "Mặt Trăng", emoji: "🌕", status: "status-human", exploration: "Đã có con người đặt chân (Chương trình Apollo lịch sử và sắp quay lại)" },
+            { id: 3, title: "Bảo vệ vật liệu trước biên độ nhiệt Sao Thủy", desc: "Chênh lệch nhiệt độ bề mặt từ -180°C lên tới 430°C đòi hỏi lớp phủ gốm chịu nhiệt đặc biệt.", planet: "Sao Thủy", emoji: "☿️", status: "status-robot", exploration: "Chưa từng có con người đặt chân (Đã có tàu Messenger và BepiColombo bay quỹ đạo)" },
+            { id: 4, title: "Chế tạo thiết bị cơ điện tử sống sót trên Sao Kim", desc: "Áp suất gấp 92 lần Trái Đất và nhiệt độ 465°C làm tan chảy chì trong vài phút. Cần vi mạch silicon-carbide.", planet: "Sao Kim", emoji: "♀️", status: "status-none", exploration: "Chưa từng có con người đặt chân (Tàu Venera từng chụp ảnh vài phút trước khi hỏng)" },
+            { id: 5, title: "Quản lý rác thải quỹ đạo và phòng thủ Trái Đất", desc: "Theo dõi hàng triệu mảnh vỡ trôi nổi với vận tốc lớn và tính toán quỹ đạo tiểu hành tinh va chạm.", planet: "Trái Đất", emoji: "🌍", status: "status-human", exploration: "Nơi duy nhất con người đang sinh sống và làm chủ hoàn toàn" },
+            { id: 6, title: "Sinh tồn và khai thác tài nguyên tại chỗ (ISRU) trên Sao Hỏa", desc: "Chuyển hóa băng ngầm thành nước sạch và nhiên liệu tên lửa để phi hành gia tự cung tự cấp.", planet: "Sao Hỏa", emoji: "🔴", status: "status-robot", exploration: "Chưa có con người đặt chân (Mới chỉ có các xe robot tự hành hoạt động)" },
+            { id: 7, title: "Vượt qua vành đai bức xạ cực mạnh xung quanh Sao Mộc", desc: "Từ trường khổng lồ tạo ra các hạt năng lượng cao phá hủy nhanh chóng vi mạch điện tử.", planet: "Sao Mộc", emoji: "🟠", status: "status-none", exploration: "Chưa từng có con người đặt chân (Khảo sát qua các tàu tự động quỹ đạo)" },
+            { id: 8, title: "Điều hướng quỹ đạo qua hệ thống vành đai hạt băng Sao Thổ", desc: "Tránh va chạm với hàng tỷ khối băng chuyển động siêu nhanh khi tàu lao qua khe hở hành tinh.", planet: "Sao Thổ", emoji: "🪐", status: "status-none", exploration: "Chưa từng có con người đặt chân (Khảo sát hoàn toàn bằng tàu Cassini)" },
+            { id: 9, title: "Cung cấp năng lượng hạt nhân độc lập tại Sao Thiên Vương", desc: "Ở quá xa Mặt Trời khiến pin mặt trời vô tác dụng, đòi hỏi máy phát nhiệt điện phóng xạ (RTG).", planet: "Sao Thiên Vương", emoji: "🔵", status: "status-none", exploration: "Chưa từng có con người đặt chân (Chỉ có tàu Voyager 2 lướt qua năm 1986)" },
+            { id: 10, title: "Giải mã thông tin tầm xa tại biên giới tối tăm Sao Hải Vương", desc: "Độ trễ tín hiệu lên tới hàng giờ chiều đi, cường độ tín hiệu thu về cực kỳ yếu ở vùng ngoài cùng.", planet: "Sao Hải Vương", emoji: "🌊", status: "status-none", exploration: "Chưa từng có con người đặt chân (Chỉ có Voyager 2 lướt qua năm 1989)" },
+            { id: 11, title: "Hệ thống hỗ trợ sự sống khép kín 98%", desc: "Tái chế toàn bộ mồ hôi, nước tiểu và không khí thành nước uống và O2 tinh khiết phục vụ chuyến bay dài.", planet: "Trái Đất", emoji: "🌍", status: "status-human", exploration: "Nơi duy nhất con người đang sinh sống và làm chủ hoàn toàn" },
+            { id: 12, title: "Phát triển động cơ đẩy nhiệt và ion hạt nhân", desc: "Giảm thời gian di chuyển liên hành tinh từ nhiều năm xuống còn vài tuần bằng năng lượng phản ứng.", planet: "Sao Mộc", emoji: "🟠", status: "status-robot", exploration: "Chưa từng có con người đặt chân (Công nghệ đang nghiên cứu cho tàu tương lai)" },
+            { id: 13, title: "Khắc phục hội chứng mất xương do vi trọng lực", desc: "Phi hành gia mất 1-1.5% mật độ xương mỗi tháng, bắt buộc phải tập thể dục cường độ cao trong không gian.", planet: "Trái Đất", emoji: "🌍", status: "status-human", exploration: "Nơi duy nhất con người đang sinh sống và làm chủ hoàn toàn" },
+            { id: 14, title: "In 3D cấu trúc trú ẩn từ bụi đá Regolith", desc: "Ứng dụng robot tự động nhặt đất đá tại chỗ để in ra các vòm nhà chống bức xạ ngoài không gian.", planet: "Sao Hỏa", emoji: "🔴", status: "status-robot", exploration: "Chưa có con người đặt chân (Đang trong giai đoạn thử nghiệm tự động hóa)" }
         ];
 
-        // Câu hỏi trắc nghiệm
+        // Câu hỏi trò chơi trắc nghiệm
         const quizData = [
             {
                 question: "Tính đến nay, ngoài Trái Đất ra thì con người đã trực tiếp đặt chân lên thiên thể nào trong không gian?",
-                options: ["A. Chỉ có trên Mặt Trăng", "B. Cả Sao Hỏa và Sao Kim", "C. Toàn bộ các hành tinh", "D. Chưa từng đặt chân ở đâu"],
+                options: ["A. Chỉ có trên Mặt Trăng 🌕", "B. Cả Sao Hỏa và Sao Kim", "C. Toàn bộ các hành tinh", "D. Chưa từng đặt chân ở đâu"],
                 correct: 0,
-                explanation: "Mặt Trăng là thiên thể ngoài Trái Đất duy nhất mà con người từng đặt chân tới (trong chương trình Apollo)."
+                explanation: "Mặt Trăng 🌕 là thiên thể ngoài Trái Đất duy nhất mà con người từng đặt chân tới (trong chương trình Apollo)."
             },
             {
                 question: "Hành tinh nào có môi trường khắc nghiệt làm thiết bị tan chảy chỉ trong vài phút và con người chưa từng đặt chân?",
-                options: ["A. Sao Hỏa", "B. Sao Kim (Áp suất cực đại & axit)", "C. Trái Đất", "D. Mặt Trăng"],
+                options: ["A. Sao Hỏa", "B. Sao Kim ♀️ (Áp suất cực đại & axit)", "C. Trái Đất", "D. Mặt Trăng"],
                 correct: 1,
-                explanation: "Sao Kim có nhiệt độ bề mặt lên tới 465°C và áp suất cực lớn, tàu thăm dò chỉ trụ được vài phút."
+                explanation: "Sao Kim ♀️ có nhiệt độ bề mặt lên tới 465°C và áp suất lớn, tàu thăm dò chỉ trụ được vài phút."
             },
             {
                 question: "Thách thức lớn nhất đối với phi hành gia sống lâu ngày trong môi trường vi trọng lực (không trọng lực) là gì?",
@@ -447,15 +446,15 @@
             },
             {
                 question: "Hành tinh nào có từ trường khổng lồ tạo ra các vành đai bức xạ nguy hiểm phá hủy vi mạch điện tử?",
-                options: ["A. Sao Thủy", "B. Sao Mộc", "C. Sao Hỏa", "D. Sao Thiên Vương"],
+                options: ["A. Sao Thủy", "B. Sao Mộc 🟠", "C. Sao Hỏa", "D. Sao Thiên Vương"],
                 correct: 1,
-                explanation: "Sao Mộc sở hữu từ trường cực mạnh, là một trong những thách thức lớn nhất cho tàu thám hiểm không gian sâu."
+                explanation: "Sao Mộc 🟠 sở hữu từ trường cực mạnh, là một trong những thách thức lớn nhất cho tàu thám hiểm không gian sâu."
             },
             {
                 question: "Công nghệ ISRU (Khai thác tài nguyên tại chỗ) trên Sao Hỏa nhằm mục đích chính là gì?",
                 options: ["A. Đào vàng mang về Trái Đất", "B. Xây khu nghỉ dưỡng thương mại", "C. Dùng băng ngầm tạo nước sạch và nhiên liệu tên lửa", "D. Trồng hoa màu xuất khẩu"],
                 correct: 2,
-                explanation: "ISRU giúp phi hành gia tự cung tự cấp nước uống và oxy/hydro làm nhiên liệu chiều về trực tiếp từ bề mặt Sao Hỏa."
+                explanation: "ISRU giúp phi hành gia tự cung tự cấp nước uống và oxy/hydro làm nhiên liệu chiều về trực tiếp từ bề mặt Sao Hỏa 🔴."
             }
         ];
 
@@ -563,7 +562,7 @@
                     <div>
                         <div class="card-header-info">
                             <span class="card-number">Vấn đề #${item.id}</span>
-                            <span class="planet-tag">${item.planet}</span>
+                            <span class="planet-tag">${item.emoji} ${item.planet}</span>
                         </div>
                         <div class="status-badge ${item.status}">${badgeText}</div>
                         <h3>${item.title}</h3>
@@ -591,7 +590,7 @@
         }
 
         function openModal(item) {
-            document.getElementById('modalTitle').innerText = `Thách thức #${item.id}: ${item.title}`;
+            document.getElementById('modalTitle').innerText = `${item.emoji} Thách thức #${item.id}: ${item.title}`;
             document.getElementById('modalMeta').innerHTML = `<strong>Khu vực:</strong> ${item.planet} | <strong>Trạng thái:</strong> ${item.exploration}`;
             document.getElementById('modalDesc').innerText = `${item.desc}\n\nĐây là bài toán thực tế thuộc hệ thống nghiên cứu không gian sâu của NASA, giúp bạn nắm bắt toàn diện giới hạn công nghệ hiện tại của nhân loại.`;
             document.getElementById('infoModal').style.display = 'flex';
